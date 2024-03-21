@@ -36,5 +36,17 @@
     enableCompletion = true;
   };
 
+  programs.vim = {
+    enable = true;
+    plugins = with pkgs.vimPlugins; [Vundle-vim];
+    settings = {
+      tabstop = 2;
+      shiftwidth = 2;
+      expandtab = false;
+      smartcase = true;
+      number = true;
+    };
+  };
+
   programs.home-manager.enable = true;
 }
