@@ -11,7 +11,6 @@
     tree
     btop
     git
-    vim
     helix
   ];
   
