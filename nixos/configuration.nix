@@ -52,7 +52,9 @@
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
   nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
-
+  
+  services.automatic-timezoned.enable = true;
+  
   # This will additionally add your inputs to the system's legacy channels
   # Making legacy nix commands consistent as well, awesome!
   nix.nixPath = ["/etc/nix/path"];
@@ -72,6 +74,7 @@
   };
 
   # FIXME: Add the rest of your current configuration
+  programs.zsh.enable = true;
 
   networking.hostName = "laptop";
   networking.networkmanager.enable = true;
@@ -91,12 +94,12 @@
       extraGroups = ["wheel" "networkmanager"];
     };
   };
-#
-#  services.xserver.xkb = {
-#     layout = "us,ru";
-#     variant = ",";
-#     options = "grp:alt_shift_togglei";
-#  };
+  users.defaultUserShell = pkgs.zsh;
+  services.xserver = {
+    layout = "us,ru";
+    xkbVariant = ",";
+    xkbOptions = "grp:alt_shift_toggle";
+  };
 
   services.xserver.enable = true;
   services.xserver.displayManager.sddm.enable = true;
