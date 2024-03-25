@@ -75,7 +75,8 @@
 
   # FIXME: Add the rest of your current configuration
   programs.zsh.enable = true;
-
+  programs.ssh.startAgent = true;
+  
   networking.hostName = "laptop";
   networking.networkmanager.enable = true;
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
