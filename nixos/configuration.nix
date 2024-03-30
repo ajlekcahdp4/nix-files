@@ -55,7 +55,11 @@
   
   services.automatic-timezoned.enable = true;
   
-  # This will additionally add your inputs to the system's legacy channels
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;  
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   # Making legacy nix commands consistent as well, awesome!
   nix.nixPath = ["/etc/nix/path"];
   environment.etc =
@@ -92,7 +96,7 @@
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
-      extraGroups = ["wheel" "networkmanager"];
+      extraGroups = ["wheel" "networkmanager" "audio" "video"];
     };
   };
   users.defaultUserShell = pkgs.zsh;
