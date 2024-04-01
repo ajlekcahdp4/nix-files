@@ -54,7 +54,7 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+  # home.packages = with pkgs; [ galaxy-buds-client ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
@@ -62,7 +62,7 @@
 
   programs.vim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [Vundle-vim];
+    plugins = with pkgs.vimPlugins; [ Vundle-vim clang_complete coc-clangd vim-airline vim-airline-themes sonokai ];
     settings = {
       tabstop = 2;
       shiftwidth = 2;
@@ -70,6 +70,16 @@
       smartcase = true;
       number = true;
     };
+    extraConfig = ''
+      let g:sonokai_style = 'default'
+      let g:sonokai_better_performance = 1
+      let g:airline_theme='sonokai'
+      let g:airline#extensions#tabline#enabled = 1
+      let g:airline_powerline_fonts = 1
+      let g:sonokai_transparent_background = 1
+      let g:sonokai_diagnostic_text_highlight = 1
+      let g:sonokai_spell_foreground = 'colored'
+  '';
   };
   
   programs.firefox = {
@@ -116,7 +126,6 @@
     enableBashIntegration = true;
     enableZshIntegration = true;
   };
-  
   programs.btop.enable = true;
   
   programs.bat.enable = true;
