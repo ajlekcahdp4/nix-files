@@ -62,6 +62,7 @@
 
   # Making legacy nix commands consistent as well, awesome!
   nix.nixPath = ["/etc/nix/path"];
+  environment.variables.EDITOR = "vim";
   environment.etc =
     lib.mapAttrs'
     (name: value: {
