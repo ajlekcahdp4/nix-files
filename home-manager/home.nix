@@ -40,7 +40,7 @@
         telescope.enabled = true;
       };
       styles = {
-        comments = [ "italic" ];
+        comments = ["italic"];
       };
       transparentBackground = false;
     };
@@ -71,7 +71,6 @@
     };
     plugins.telescope = {
       enable = true;
-
     };
     plugins = {
       airline.enable = true;
@@ -135,7 +134,7 @@
 
   programs.vim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [ 
+    plugins = with pkgs.vimPlugins; [
       Vundle-vim
       clang_complete
       coc-clangd
@@ -143,7 +142,7 @@
       vim-airline-themes
       sonokai
       vim-nix
-      LanguageClient-neovim 
+      LanguageClient-neovim
     ];
     settings = {
       tabstop = 2;
@@ -161,15 +160,15 @@
       let g:sonokai_transparent_background = 1
       let g:sonokai_diagnostic_text_highlight = 1
       let g:sonokai_spell_foreground = 'colored'
-  '';
+    '';
   };
-  
+
   programs.firefox = {
     enable = true;
   };
 
   programs.starship.enable = true;
-  
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -177,55 +176,61 @@
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
+      plugins = ["git"];
     };
     enableAutosuggestions = true;
   };
-  
+
   programs.starship.settings = {
-      add_newline = false;
-      format = "$shlvl$shell$username$hostname$nix_shell$git_branch$git_commit$git_state$git_status$directory$jobs$cmd_duration$character";
-      shlvl = {
-        disabled = true;
-        symbol = "ﰬ";
-        style = "bright-red bold";
-      };
-      shell = {
-        disabled = false;
-        format = "$indicator";
-        fish_indicator = "";
-        # bash_indicator = "[BASH](bright-white) ";
-        # zsh_indicator = "[ZSH](bright-white) ";
-      };
-      username = {
-        style_user = "bright-white bold";
-        style_root = "bright-red bold";
-      };
+    add_newline = false;
+    format = "$shlvl$shell$username$hostname$nix_shell$git_branch$git_commit$git_state$git_status$directory$jobs$cmd_duration$character";
+    shlvl = {
+      disabled = true;
+      symbol = "ﰬ";
+      style = "bright-red bold";
+    };
+    shell = {
+      disabled = false;
+      format = "$indicator";
+      fish_indicator = "";
+      # bash_indicator = "[BASH](bright-white) ";
+      # zsh_indicator = "[ZSH](bright-white) ";
+    };
+    username = {
+      style_user = "bright-white bold";
+      style_root = "bright-red bold";
+    };
   };
-    
+
   programs.zellij = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
   };
   programs.btop.enable = true;
-  
+
   programs.bat.enable = true;
-  programs.ripgrep.enable = true; 
-  
+  programs.ripgrep.enable = true;
+
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
   };
-#  programs.nixvim = {
-#    enable = true;
-#
-#    colorschemes.gruvbox.enable = true;
-#    plugins.lightline.enable = true;
-#  };
-  
-# Nicely reload system units when changing configs
+
+  programs.atuin = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    settings = {
+      auto_sync = true;
+      sync_frequency = "5m";
+      filter_mode = "host";
+      filter_mode_shell_up_key_binding = "session";
+    };
+  };
+
+  # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

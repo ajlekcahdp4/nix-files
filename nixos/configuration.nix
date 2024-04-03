@@ -52,11 +52,11 @@
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
   nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
-  
+
   services.automatic-timezoned.enable = true;
-  
+
   hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;  
+  hardware.pulseaudio.support32Bit = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
@@ -81,7 +81,7 @@
   # FIXME: Add the rest of your current configuration
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
-  
+
   networking.hostName = "laptop";
   networking.networkmanager.enable = true;
   # TODO: This is just an example, be sure to use whatever bootloader you prefer
@@ -112,7 +112,7 @@
   services.xserver.desktopManager.plasma5.enable = true;
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
-  
+
   services.openssh = {
     enable = true;
     settings = {
