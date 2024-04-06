@@ -1,4 +1,5 @@
 # This is your home-manager configuration file
+      # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
@@ -21,7 +22,7 @@
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
   ];
-
+  
   programs.nixvim = {
     enable = true;
     enableMan = true;
@@ -44,7 +45,7 @@
       };
       transparentBackground = false;
     };
-    vimAlias = false;
+    vimAlias = true;
     options = {
       number = true;
       shiftwidth = 2;
@@ -53,11 +54,21 @@
       tabstop = 2;
       smartindent = true;
       cursorline = true;
+      colorcolumn = "80";
     };
     plugins.lsp = {
       enable = true;
       servers = {
-        ccls.enable = true;
+        clangd = {
+          enable = true;
+          autostart = true;
+        };
+      };
+      keymaps.lspBuf = {
+        gD = "references";
+        gd = "definition";
+        gi = "implementation";
+        gt = "type_definition";
       };
     };
     plugins.nvim-cmp = {
@@ -71,24 +82,31 @@
     };
     plugins.telescope = {
       enable = true;
+      keymaps = {
+        "<leader>fg" = "live_grep";
+        "<leader>ff" = "find_files";
+        "<leader>fh" = "help_tags";
+        "<leader>fb" = "buffers";
+      };
     };
-    plugins = {
-      airline.enable = true;
+    plugins.airline = {
+      enable = true;
     };
     extraConfigVim = ''
-      set colorcolumn=80
-      let g:sonokai_style = 'default'
-      let g:sonokai_better_performance = 1
-      let g:airline_theme='sonokai'
       let g:airline#extensions#tabline#enabled = 1
       let g:airline_powerline_fonts = 1
-      let g:sonokai_transparent_background = 1
-      let g:sonokai_diagnostic_text_highlight = 1
-      let g:sonokai_spell_foreground = 'colored'
-      nnoremap <leader>ff <cmd>Telescope find_files<cr>
-      nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-      nnoremap <leader>fb <cmd>Telescope buffers<cr>
-      nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+    '';
+    extraConfigLua = ''
+      local cmp = require'cmp'
+      cmp.setup({
+        mapping = cmp.mapping.preset.insert({
+         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+         ['<C-f>'] = cmp.mapping.scroll_docs(4),
+         ['<C-Space>'] = cmp.mapping.complete(),
+         ['<C-e>'] = cmp.mapping.abort(),
+         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        })
+      }) 
     '';
   };
 
@@ -131,37 +149,6 @@
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git.enable = true;
-
-  programs.vim = {
-    enable = true;
-    plugins = with pkgs.vimPlugins; [
-      Vundle-vim
-      clang_complete
-      coc-clangd
-      vim-airline
-      vim-airline-themes
-      sonokai
-      vim-nix
-      LanguageClient-neovim
-    ];
-    settings = {
-      tabstop = 2;
-      shiftwidth = 2;
-      expandtab = false;
-      smartcase = true;
-      number = true;
-    };
-    extraConfig = ''
-      let g:sonokai_style = 'default'
-      let g:sonokai_better_performance = 1
-      let g:airline_theme='sonokai'
-      let g:airline#extensions#tabline#enabled = 1
-      let g:airline_powerline_fonts = 1
-      let g:sonokai_transparent_background = 1
-      let g:sonokai_diagnostic_text_highlight = 1
-      let g:sonokai_spell_foreground = 'colored'
-    '';
-  };
 
   programs.firefox = {
     enable = true;
