@@ -156,7 +156,11 @@
   };
 
   programs.starship.enable = true;
-
+  programs.wezterm = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
   programs.zsh = {
     enable = true;
     enableCompletion = true;
