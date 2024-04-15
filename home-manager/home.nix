@@ -154,7 +154,22 @@
   programs.firefox = {
     enable = true;
   };
+  programs.eza = {
+    enable = true;
+    git = true;
+    icons = lib.mkDefault true;
 
+    extraOptions = [
+      "--group-directories-first"
+      "--header"
+    ];
+  };
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
   programs.starship.enable = true;
   programs.wezterm = {
     enable = true;
