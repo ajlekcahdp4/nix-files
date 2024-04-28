@@ -46,14 +46,14 @@
 
       settings = {
         "browser.startup.page" = 3; # Restore previous tabs
-        "browser.toolbars.bookmarks.showInPrivateBrowsing" = true;    # Show bookmarks in private tabs as well.
-        "browser.toolbars.bookmarks.visibility" = "always";           # Always show the toolbar.
-         "services.sync.prefs.sync.layout.spellcheckDefault" = false;  # Do not spell-check
-         "browser.newtabpage.enabled" = false;
-         "browser.newtabpage.introShown" = false;
-         "browser.newtabpage.pinned" = [];
-         "browser.newtabpage.enhanced" = false;
-         "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = false;
+        "browser.toolbars.bookmarks.showInPrivateBrowsing" = true; # Show bookmarks in private tabs as well.
+        "browser.toolbars.bookmarks.visibility" = "always"; # Always show the toolbar.
+        "services.sync.prefs.sync.layout.spellcheckDefault" = false; # Do not spell-check
+        "browser.newtabpage.enabled" = false;
+        "browser.newtabpage.introShown" = false;
+        "browser.newtabpage.pinned" = [];
+        "browser.newtabpage.enhanced" = false;
+        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = false;
         "browser.uiCustomization.state" = ''
           {
             "placements": {

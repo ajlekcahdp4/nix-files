@@ -22,6 +22,7 @@
     ../modules/home-manager/zellij
     ../modules/home-manager/zsh
     ../modules/home-manager/firefox
+    ../modules/home-manager/gnome
   ];
 
   nixpkgs = {
@@ -49,7 +50,11 @@
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    userName = "Alexander Romanov";
+    userEmail = "alex.rom23@mail.ru";
+  };
 
   programs.starship.enable = true;
 
