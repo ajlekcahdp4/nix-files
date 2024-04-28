@@ -23,6 +23,7 @@
     ../modules/home-manager/zsh
     ../modules/home-manager/firefox
     ../modules/home-manager/gnome
+    ../modules/home-manager/dconf
   ];
 
   nixpkgs = {
@@ -55,7 +56,6 @@
     userName = "Alexander Romanov";
     userEmail = "alex.rom23@mail.ru";
   };
-
   programs.starship.enable = true;
 
   programs.btop.enable = true;
