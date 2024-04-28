@@ -17,6 +17,11 @@
       url = "github:nix-community/nixvim/nixos-23.11";
       inputs.nixpkgs-unstable.follows = "nixpkgs";
     };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs-unstable.follows = "nixpkgs";
+    };
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
 
