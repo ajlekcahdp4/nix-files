@@ -23,7 +23,6 @@
     ../modules/home-manager/zsh
     ../modules/home-manager/firefox
     ../modules/home-manager/gnome
-    ../modules/home-manager/dconf
   ];
 
   nixpkgs = {
