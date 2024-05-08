@@ -8,6 +8,6 @@
       enable = true;
       plugins = ["git"];
     };
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
   };
 }

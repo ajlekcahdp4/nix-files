@@ -83,7 +83,6 @@
     alexander = {
       name = "alexander";
       initialPassword = "test";
-      initialHashedPassword = "test";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
         # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
@@ -114,8 +113,8 @@
   services.xserver.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-  services.xserver.libinput.touchpad.tapping = true;
+  services.libinput.enable = true;
+  services.libinput.touchpad.tapping = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
