@@ -9,25 +9,29 @@
     enableMan = true;
     colorschemes.catppuccin = {
       enable = true;
-      flavour = "mocha";
-      showBufferEnd = true;
-      dimInactive = {
-        enabled = true;
-        percentage = 0.15;
-        shade = "dark";
+      settings = {
+        flavour = "mocha";
+        showBufferEnd = true;
+        dimInactive = {
+          enabled = true;
+          percentage = 0.15;
+          shade = "dark";
+        };
+        integrations = {
+          cmp = true;
+          which_key = true;
+          telescope.enabled = true;
+        };
+        styles = {
+          comments = ["italic"];
+        };
+        transparentBackground = false;
       };
-      integrations = {
-        cmp = true;
-        which_key = true;
-        telescope.enabled = true;
-      };
-      styles = {
-        comments = ["italic"];
-      };
-      transparentBackground = false;
     };
+
     vimAlias = true;
-    options = {
+
+    opts = {
       number = true;
       shiftwidth = 2;
       expandtab = true;
@@ -52,14 +56,9 @@
         gt = "type_definition";
       };
     };
-    plugins.nvim-cmp = {
+    plugins.cmp = {
       enable = true;
       autoEnableSources = true;
-      sources = [
-        {name = "nvim_lsp";}
-        {name = "path";}
-        {name = "buffer";}
-      ];
     };
     plugins.telescope = {
       enable = true;
