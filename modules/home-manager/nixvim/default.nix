@@ -47,6 +47,7 @@
         clangd = {
           enable = true;
           autostart = true;
+          package = pkgs.clang-tools_18;
         };
       };
       keymaps.lspBuf = {
