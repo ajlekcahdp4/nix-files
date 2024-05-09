@@ -1,25 +1,17 @@
 {
   pkgs,
-  inputs,
   lib,
+  inputs,
   ...
 }: {
   imports = [inputs.stylix.nixosModules.stylix];
-  stylix = {
-    autoEnable = lib.mkOverride 75 true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
-    opacity = let
-      alpha = 0.95;
-    in {
-      terminal = alpha;
-      popups = alpha;
-      desktop = alpha;
-      applications = alpha;
+  stylix = {
+    autoEnable = true;
+    image = pkgs.fetchurl {
+      url = "https://w.wallhaven.cc/full/2y/wallhaven-2y2wg6.png";
+      sha256 = "sha256-nFoNfk7Y/CGKWtscOE5GOxshI5eFmppWvhxHzOJ6mCA=";
     };
-    cursor = {
-      package = pkgs.catppuccin-cursors.mochaDark;
-      name = "Catppuccin-Mocha-Dark-Cursors";
-    };
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
   };
 }
