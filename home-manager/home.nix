@@ -23,6 +23,7 @@
     ../modules/home-manager/zsh
     ../modules/home-manager/firefox
     ../modules/home-manager/gnome
+    ../modules/home-manager/stylix
   ];
 
   nixpkgs = {
@@ -47,7 +48,11 @@
   };
 
   # home.packages = with pkgs; [ galaxy-buds-client ];
-
+  modules.stylix.enable = true;
+  stylix.image = pkgs.fetchurl {
+    url = "https://w.wallhaven.cc/full/2y/wallhaven-2y2wg6.png";
+    sha256 = "sha256-nFoNfk7Y/CGKWtscOE5GOxshI5eFmppWvhxHzOJ6mCA=";
+  };
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git = {

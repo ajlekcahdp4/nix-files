@@ -12,7 +12,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    outputs.nixosModules.stylix
+    ../modules/nixos/stylix
   ];
 
   # Use the systemd-boot EFI boot loader.

@@ -72,6 +72,9 @@
     };
     plugins.airline = {
       enable = true;
+      settings = {
+        theme = lib.mkForce "catppuccin";
+      };
     };
     extraConfigVim = ''
       let g:airline#extensions#tabline#enabled = 1
