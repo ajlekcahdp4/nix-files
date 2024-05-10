@@ -9,22 +9,27 @@
   pkgs,
   ...
 }: {
-  # You can import other home-manager modules here
+
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
-    ../modules/home-manager/nixvim
-    ../modules/home-manager/eza
-    ../modules/home-manager/direnv
-    ../modules/home-manager/wezterm
-    ../modules/home-manager/starship
-    ../modules/home-manager/atuin
-    ../modules/home-manager/fzf
-    ../modules/home-manager/zellij
-    ../modules/home-manager/zsh
-    ../modules/home-manager/firefox
-    ../modules/home-manager/gnome
-    ../modules/home-manager/stylix
+    outputs.homeManagerModules.cli
+    outputs.homeManagerModules.desktop
   ];
+ 
+  modules = {
+    stylix.enable = true;
+    eza.enable = true;
+    fzf.enable = true;
+    direnv.enable = true;
+    nixvim.enable = true;
+    zsh.enable = true;
+    zellij.enable = true;
+    gnome.enable = true;
+    wezterm.enable = true;
+    atuin.enable = true;
+    starship.enable = true;
+    firefox.enable = true;
+  };
 
   nixpkgs = {
     # You can add overlays here
@@ -47,12 +52,6 @@
     homeDirectory = "/home/alexander";
   };
 
-  # home.packages = with pkgs; [ galaxy-buds-client ];
-  modules.stylix.enable = true;
-  stylix.image = pkgs.fetchurl {
-    url = "https://w.wallhaven.cc/full/2y/wallhaven-2y2wg6.png";
-    sha256 = "sha256-nFoNfk7Y/CGKWtscOE5GOxshI5eFmppWvhxHzOJ6mCA=";
-  };
   # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.git = {
