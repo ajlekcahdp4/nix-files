@@ -9,13 +9,12 @@
   pkgs,
   ...
 }: {
-
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
     outputs.homeManagerModules.cli
     outputs.homeManagerModules.desktop
   ];
- 
+
   modules = {
     stylix.enable = true;
     eza.enable = true;
