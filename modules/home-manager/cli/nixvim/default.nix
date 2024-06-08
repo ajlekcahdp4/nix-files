@@ -49,6 +49,7 @@ in {
         cursorline = true;
         colorcolumn = "80";
       };
+      plugins.luasnip.enable = true;
       plugins.lsp = {
         enable = true;
         servers = {
@@ -56,6 +57,10 @@ in {
             enable = true;
             autostart = true;
             package = pkgs.clang-tools_18;
+          };
+          nixd = {
+            enable = true;
+            autostart = true;
           };
         };
         keymaps.lspBuf = {
@@ -68,6 +73,14 @@ in {
       plugins.cmp = {
         enable = true;
         autoEnableSources = true;
+        settings = {
+          snippet.expand = ''
+            function(args)
+              require('luasnip').lsp_expand(args.body)
+            end
+          '';
+          sources = [{name = "nvim_lsp";}];
+        };
       };
       plugins.telescope = {
         enable = true;
