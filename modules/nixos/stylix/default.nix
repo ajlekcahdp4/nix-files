@@ -8,7 +8,9 @@
   stylix = {
     autoEnable = lib.mkOverride 75 true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-
+    targets = {
+      plymouth.enable = true;
+    };
     opacity = let
       alpha = 0.95;
     in {
