@@ -7,15 +7,18 @@
   cfg = config.modules.stylix;
 in {
   options = {
-    modules.stylix.enable = lib.mkEnableOption "enable stylix setup";
+    modules.stylix = {
+      enable = lib.mkEnableOption "enable stylix setup";
+      enableWallpapers = lib.mkEnableOption "set wallpapers";
+    };
   };
 
   config = lib.mkIf cfg.enable {
     stylix = {
-      image = pkgs.fetchurl {
+      image = lib.mkIf cfg.enableWallpapers (pkgs.fetchurl {
         url = "https://w.wallhaven.cc/full/2y/wallhaven-2y2wg6.png";
         sha256 = "sha256-nFoNfk7Y/CGKWtscOE5GOxshI5eFmppWvhxHzOJ6mCA=";
-      };
+      });
       targets = {
         gnome.enable = true;
         nixvim.enable = true;
@@ -27,10 +30,10 @@ in {
         btop.enable = true;
       };
       autoEnable = true;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
       cursor = {
-        package = pkgs.catppuccin-cursors.mochaDark;
-        name = "Catppuccin-Mocha-Dark-Cursors";
+        package = pkgs.catppuccin-cursors.latteLight;
+        name = "Catppuccin-Latte-Light-Cursors";
       };
     };
   };

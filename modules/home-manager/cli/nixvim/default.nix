@@ -15,28 +15,6 @@ in {
     programs.nixvim = {
       enable = true;
       enableMan = true;
-      colorschemes.catppuccin = {
-        enable = true;
-        settings = {
-          flavour = "mocha";
-          showBufferEnd = true;
-          dimInactive = {
-            enabled = true;
-            percentage = 0.15;
-            shade = "dark";
-          };
-          integrations = {
-            cmp = true;
-            which_key = true;
-            telescope.enabled = true;
-          };
-          styles = {
-            comments = ["italic"];
-          };
-          transparentBackground = false;
-        };
-      };
-
       vimAlias = true;
 
       opts = {

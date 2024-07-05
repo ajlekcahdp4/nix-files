@@ -6,8 +6,9 @@
 }: {
   imports = [inputs.stylix.nixosModules.stylix];
   stylix = {
+    image = ./wallpaper.jpg;
     autoEnable = lib.mkOverride 75 true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
     targets = {
       plymouth.enable = true;
     };

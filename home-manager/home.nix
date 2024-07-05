@@ -16,14 +16,17 @@
   ];
 
   modules = {
-    stylix.enable = true;
+    stylix = {
+      enable = true;
+      enableWallpapers = false;
+    };
     eza.enable = true;
     fzf.enable = true;
     direnv.enable = true;
     nixvim.enable = true;
     zsh.enable = true;
     zellij.enable = true;
-    gnome.enable = true;
+    gnome.enable = false;
     wezterm.enable = true;
     atuin.enable = true;
     starship.enable = true;
@@ -49,6 +52,9 @@
   home = {
     username = "alexander";
     homeDirectory = "/home/alexander";
+    packages = [
+      inputs.yandex-browser.packages.x86_64-linux.yandex-browser-stable
+    ];
   };
 
   # Enable home-manager and git

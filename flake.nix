@@ -24,13 +24,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-
-    # TODO: Add any other flake you might need
-    # hardware.url = "github:nixos/nixos-hardware";
-
-    # Shameless plug: looking for a way to nixify your themes and make
-    # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
+    yandex-browser = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:miuirussia/yandex-browser.nix";
+    };
   };
 
   outputs = {
@@ -74,6 +71,12 @@
           ./hosts/hp-laptop/configuration.nix
         ];
       };
+      huawei-grand-laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/huawei-grand-laptop/configuration.nix
+        ];
+      };
     };
 
     # Standalone home-manager configuration entrypoint
@@ -83,7 +86,14 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          # > Our main home-manager configuration file <
+          ./home-manager/home.nix
+          inputs.stylix.homeManagerModules.stylix
+        ];
+      };
+      "alexander@huawei-grand-laptop" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
           ./home-manager/home.nix
           inputs.stylix.homeManagerModules.stylix
         ];
