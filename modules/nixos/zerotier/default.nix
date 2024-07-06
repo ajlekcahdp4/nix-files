@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./systemd-manager.nix
+  ];
+}
