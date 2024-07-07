@@ -16,7 +16,10 @@
   ];
 
   modules = {
-    stylix.enable = true;
+    stylix = {
+      enable = true;
+      flavour = "mocha";
+    };
     eza.enable = true;
     fzf.enable = true;
     direnv.enable = true;

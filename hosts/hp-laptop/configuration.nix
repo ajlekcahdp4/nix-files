@@ -45,18 +45,16 @@
     };
   };
 
+  modules.stylix = {
+    enable = true;
+    flavour = "mocha";
+  };
+
+  modules.zerotier.enable = true;
+
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
   nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
-  services.zerotierone = let
-    networkId = "272f5eae1653139f";
-  in {
-    enable = true;
-    joinNetworks = [networkId];
-    localConf = {
-      settings.allowTcpFallbackRelay = true;
-    };
-  };
   services.automatic-timezoned.enable = true;
 
   hardware.pulseaudio.enable = true;
