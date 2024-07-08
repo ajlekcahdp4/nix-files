@@ -23,8 +23,8 @@ in {
       port = 9995;
     };
 
-    environment.persistence."/persist/system" = {
-      directories = ["/var/lib/zerotier-one"];
-    };
+    #    environment.persistence."/persist/system" = {
+    #      directories = ["/var/lib/zerotier-one"];
+    #    };
   };
 }
