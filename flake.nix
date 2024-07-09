@@ -84,6 +84,11 @@
         users = {inherit (users) alexander;};
         hostInfo = hosts.laptop;
       };
+
+      huawei-grand-laptop = lib.mkHostSystem {
+        users = {inherit (users) alexander alexey;};
+        hostInfo = hosts.huawei-grand-laptop;
+      };
     };
 
     # Standalone home-manager configuration entrypoint
@@ -94,14 +99,19 @@
       "alexander@laptop" = lib.mkHomeConfig {
         user = users.alexander;
         host = hosts.laptop;
-        modules = [setNixModule outputs.homeManagerModules.cli outputs.homeManagerModules.desktop];
-        #        additionalSpecialArgs = {useroptions.modules.sirenv.enable = true;};
+        modules = [setNixModule];
       };
-      "alexey@laptop" = lib.mkHomeConfig {
+
+      "alexander@huawei-grand-laptop" = lib.mkHomeConfig {
+        user = users.alexander;
+        host = hosts.huawei-grand-laptop;
+        modules = [setNixModule];
+      };
+
+      "alexey@huawei-grand-laptop" = lib.mkHomeConfig {
         user = users.alexey;
-        host = hosts.laptop;
-        modules = [setNixModule ./modules/home-manager/cli];
-        #        additionalSpecialArgs = {useroptions.modules.sirenv.enable = true;};
+        host = hosts.huawei-grand-laptop;
+        modules = [setNixModule];
       };
     };
   };
