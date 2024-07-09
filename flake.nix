@@ -25,6 +25,15 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
+
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
 
@@ -47,7 +56,11 @@
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
+    lib = import ./lib {inherit inputs outputs;};
+    users = import ./users {inherit lib;};
+    hosts = import ./hosts {inherit lib;};
   in {
+    inherit lib;
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
@@ -67,26 +80,28 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          # > Our main nixos configuration file <
-          ./hosts/hp-laptop/configuration.nix
-        ];
+      laptop = lib.mkHostSystem {
+        users = {inherit (users) alexander;};
+        hostInfo = hosts.laptop;
       };
     };
 
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-      "alexander@laptop" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          # > Our main home-manager configuration file <
-          ./home-manager/home.nix
-          inputs.stylix.homeManagerModules.stylix
-        ];
+    homeConfigurations = let
+      setNixModule = {pkgs, ...}: {nix.package = pkgs.nix;};
+    in {
+      "alexander@laptop" = lib.mkHomeConfig {
+        user = users.alexander;
+        host = hosts.laptop;
+        modules = [setNixModule outputs.homeManagerModules.cli outputs.homeManagerModules.desktop];
+        #        additionalSpecialArgs = {useroptions.modules.sirenv.enable = true;};
+      };
+      "alexey@laptop" = lib.mkHomeConfig {
+        user = users.alexey;
+        host = hosts.laptop;
+        modules = [setNixModule ./modules/home-manager/cli];
+        #        additionalSpecialArgs = {useroptions.modules.sirenv.enable = true;};
       };
     };
   };

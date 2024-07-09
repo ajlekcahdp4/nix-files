@@ -3,6 +3,7 @@
   config,
   inputs,
   lib,
+  sgdgfgd,
   ...
 }: let
   cfg = config.modules.stylix;
@@ -12,20 +13,17 @@
   };
 in {
   imports = [inputs.stylix.nixosModules.stylix];
-
-  options = {
-    modules.stylix = {
-      enable = lib.mkEnableOption "Enable stylix setup";
-      flavour = lib.mkOption {
-        description = "Catppuccin flavour";
-        type = lib.types.enum ["mocha" "latte"];
-        default = "mocha";
-      };
-      wallpaper = lib.mkOption {
-        description = "Image to set as a wallpaper";
-        type = with lib.types; coercedTo package toString path;
-        default = defaultWallpaper;
-      };
+  options.modules.stylix = {
+    enable = lib.mkEnableOption "Enable stylix setup";
+    flavour = lib.mkOption {
+      description = "Catppuccin flavour";
+      type = lib.types.enum ["mocha" "latte"];
+      default = "mocha";
+    };
+    wallpaper = lib.mkOption {
+      description = "Image to set as a wallpaper";
+      type = with lib.types; coercedTo package toString path;
+      default = defaultWallpaper;
     };
   };
   config = lib.mkIf cfg.enable {
