@@ -6,6 +6,7 @@ in {
       modules.direnv.enable = true;
       modules.gnome.enable = true;
       modules.firefox.enable = true;
+      modules.stylix.flavour = "latte";
     };
     gitSetupModule = {
       programs.git = {
