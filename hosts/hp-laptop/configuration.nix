@@ -10,16 +10,22 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
+    ../common
+    outputs.nixosModules
     ./hardware-configuration-huawei.nix
-    ../../modules/nixos/stylix
-    ../../modules/nixos/zerotier
+    #(import ../modules/nixos/disko.nix {device = "/dev/nvme0n1";})
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth.enable = true;
+  modules = {
+    impermanence.enable = false;
+    zerotier.enable = true;
+    plymouth.enable = true;
+    stylix = {
+      enable = true;
+      flavour = "mocha";
+    };
+  };
+
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -44,67 +50,7 @@
       allowUnfree = true;
     };
   };
-
-  modules.stylix = {
-    enable = true;
-    flavour = "mocha";
-  };
-
-  modules.zerotier.enable = true;
-
-  # This will add each flake input as a registry
-  # To make nix3 commands consistent with your flake
-  nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
-  services.automatic-timezoned.enable = true;
-
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-
-  # Making legacy nix commands consistent as well, awesome!
-  nix.nixPath = ["/etc/nix/path"];
-  environment.variables.EDITOR = "vim";
-  environment.etc =
-    lib.mapAttrs'
-    (name: value: {
-      name = "nix/path/${name}";
-      value.source = value.flake;
-    })
-    config.nix.registry;
-
-  nix.settings = {
-    # Enable flakes and new 'nix' command
-    experimental-features = "nix-command flakes";
-    # Deduplicate and optimize nix store
-    auto-optimise-store = true;
-  };
-
-  # FIXME: Add the rest of your current configuration
-  programs.zsh.enable = true;
-  programs.ssh.startAgent = true;
-
   networking.hostName = "laptop";
-  networking.networkmanager.enable = true;
-
-  # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
-  users.users = {
-    alexander = {
-      name = "alexander";
-      initialPassword = "test";
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
-      ];
-      extraGroups = ["wheel" "networkmanager" "audio" "video"];
-    };
-  };
-  users.defaultUserShell = pkgs.zsh;
-
-  # networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -120,10 +66,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-  services.libinput.touchpad.tapping = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;

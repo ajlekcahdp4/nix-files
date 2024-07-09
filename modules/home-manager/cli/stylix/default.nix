@@ -38,6 +38,15 @@ in {
         bat.enable = true;
         zellij.enable = true;
         btop.enable = true;
+        wezterm.enable = true;
+      };
+      opacity = let
+        alpha = 0.95;
+      in {
+        terminal = alpha;
+        popups = alpha;
+        desktop = alpha;
+        applications = alpha;
       };
       autoEnable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-${cfg.flavour}.yaml";
