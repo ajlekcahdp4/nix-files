@@ -25,15 +25,10 @@ in {
             percentage = 0.15;
             shade = "dark";
           };
-          integrations = {
-            cmp = true;
-            which_key = true;
-            telescope.enabled = true;
-          };
           styles = {
             comments = ["italic"];
           };
-          transparentBackground = false;
+          transparentBackground = true;
         };
       };
 
