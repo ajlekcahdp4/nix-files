@@ -1,4 +1,4 @@
-{lib,  ...}: let
+{lib, ...}: let
   inherit (lib) mkUser;
 in {
   alexander = let
@@ -6,7 +6,8 @@ in {
       modules.direnv.enable = true;
       modules.gnome.enable = true;
       modules.firefox.enable = true;
-      modules.stylix.enable = false;
+      home-modules.stylix.enable = true;
+      home-modules.stylix.flavour = "mocha";
     };
     gitSetupModule = {
       programs.git = {
@@ -24,26 +25,28 @@ in {
         "docker"
         "networkmanager"
       ];
-      homeModules = [setUserOptionsModule gitSetupModule ];
+      homeModules = [setUserOptionsModule gitSetupModule];
     };
 
   alexey = let
-    addUserPackages = {inputs, ...}:{
+    addUserPackages = {inputs, ...}: {
       home.packages = [
-        inputs.yandex-browser.packages.x86_64-linux.yandex-browser-stable];
+        inputs.yandex-browser.packages.x86_64-linux.yandex-browser-stable
+      ];
     };
     setUserOptionsModule = {
-      modules.stylix.enable = false;
-      modules.stylix.flavour = "mocha";
+      home-modules.stylix.enable = true;
+      home-modules.stylix.flavour = "latte";
     };
-  in mkUser {
-    name = "alexey";
-    normalUser = true;
-    groups = ["wheel" "audio" "video"];
-    optionalGroups = [
-      "docker"
-      "networkmanager"
-    ];
-    homeModules = [setUserOptionsModule addUserPackages];
-  };
+  in
+    mkUser {
+      name = "alexey";
+      normalUser = true;
+      groups = ["wheel" "audio" "video"];
+      optionalGroups = [
+        "docker"
+        "networkmanager"
+      ];
+      homeModules = [setUserOptionsModule addUserPackages];
+    };
 }

@@ -33,10 +33,16 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
-    
+
     yandex-browser = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:miuirussia/yandex-browser.nix";
+    };
+
+    plasma-manager = {
+      url = "github:pjones/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
   };
 
@@ -83,7 +89,7 @@
       };
 
       huawei-grand-laptop = lib.mkHostSystem {
-        users = {inherit (users) alexander;};
+        users = {inherit (users) alexander alexey;};
         hostInfo = hosts.huawei-grand-laptop;
       };
     };

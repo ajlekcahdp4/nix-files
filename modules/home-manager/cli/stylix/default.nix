@@ -5,18 +5,18 @@
   config,
   ...
 }: let
-  cfg = config.modules.stylix;
+  cfg = config.home-modules.stylix;
   defaultWallpaper = pkgs.fetchurl {
     url = "https://w.wallhaven.cc/full/2y/wallhaven-2y2wg6.png";
     sha256 = "sha256-nFoNfk7Y/CGKWtscOE5GOxshI5eFmppWvhxHzOJ6mCA=";
   };
 in {
   options = {
-    modules.stylix = {
+    home-modules.stylix = {
       enable = lib.mkEnableOption "enable stylix setup";
       wallpaper = lib.mkOption {
         description = "Path of the image to set as a wallpaper";
-        default = null;
+        default = defaultWallpaper;
       };
       flavour = lib.mkOption {
         description = "Catppuccin flavour";
@@ -28,7 +28,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     stylix = {
-      image = lib.mkIf (!(builtins.isNull cfg.wallpaper)) cfg.wallpaper;
+      image = cfg.wallpaper;
       targets = {
         gnome.enable = true;
         nixvim.enable = true;
@@ -39,6 +39,7 @@ in {
         zellij.enable = true;
         btop.enable = true;
         wezterm.enable = true;
+        kde.enable = false;
       };
       opacity = let
         alpha = 0.95;

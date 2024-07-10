@@ -3,7 +3,6 @@
   config,
   inputs,
   lib,
-  sgdgsdfsdfsffsdgfgd,
   ...
 }: let
   cfg = config.modules.stylix;
@@ -13,7 +12,7 @@
   };
 in {
   imports = [inputs.stylix.nixosModules.stylix];
-  
+
   options.modules.stylix = {
     enable = lib.mkEnableOption "Enable stylix setup";
     flavour = lib.mkOption {
@@ -27,7 +26,7 @@ in {
       default = defaultWallpaper;
     };
   };
-  
+
   config = lib.mkIf cfg.enable {
     stylix = {
       image = cfg.wallpaper;

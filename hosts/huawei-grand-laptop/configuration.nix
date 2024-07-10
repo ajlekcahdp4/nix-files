@@ -15,7 +15,6 @@
     ./hardware-configuration.nix
     #(import ../modules/nixos/disko.nix {device = "/dev/nvme0n1";})
   ];
-
   modules = {
     impermanence.enable = false;
     zerotier.enable = true;
@@ -68,9 +67,11 @@
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.displayManager.defaultSession = "plasma";
-  services.desktopManager.plasma6.enable = true;
-  environment.plasma6.excludePackages = with pkgs; [ kdePackages.systemsettings wezterm plasma-browser-integration];
-  environment.systemPackages = with pkgs; [ kdePackages.kde-gtk-config ];
+  services.desktopManager.plasma6 = {
+    enable = true;
+    enableQt5Integration = true;
+  };
+  environment.systemPackages = with pkgs; [kdePackages.kde-gtk-config];
   services.dbus.enable = true;
 
   services.openssh = {
@@ -99,7 +100,6 @@
   #     tree
   #   ];
   # };
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
