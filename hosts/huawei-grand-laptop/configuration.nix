@@ -26,6 +26,30 @@
     };
   };
   security.sudo.enable = true;
+  security.pam.services.sddm.enableKwallet = false;
+
+  environment.etc = {
+    "xdg/kwalletrc" = {
+      text = ''
+        [Wallet]
+        Enabled=false
+      '';
+    };
+  };
+
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [epson_201207w];
+  };
+  hardware = {
+    sane = {
+      enable = true;
+      extraBackends = with pkgs; [
+        epkowa
+      ];
+    };
+  };
+
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -52,12 +76,9 @@
   };
   networking.hostName = "laptop";
 
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   time.timeZone = lib.mkDefault "Europe/Moscow";
   i18n = {
-    defaultLocale = lib.mkDefault "en_US.UTF-8";
+    defaultLocale = lib.mkDefault "ru_RU.UTF-8";
     supportedLocales = [
       "en_US.UTF-8/UTF-8"
       "ru_RU.UTF-8/UTF-8"
@@ -74,6 +95,12 @@
   environment.systemPackages = with pkgs; [kdePackages.kde-gtk-config];
   services.dbus.enable = true;
 
+  services.xserver = {
+    xkb.layout = "us,ru";
+    xkb.variant = ",";
+    xkb.options = "grp:alt_shift_toggle";
+  };
+
   services.openssh = {
     enable = true;
     settings = {
@@ -83,9 +110,6 @@
       PasswordAuthentication = false;
     };
   };
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   # Enable sound.
   # sound.enable = true;

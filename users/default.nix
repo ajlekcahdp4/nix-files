@@ -29,14 +29,32 @@ in {
     };
 
   alexey = let
-    addUserPackages = {inputs, ...}: {
+    addUserPackages = {
+      inputs,
+      pkgs,
+      ...
+    }: {
       home.packages = [
         inputs.yandex-browser.packages.x86_64-linux.yandex-browser-stable
+        pkgs.gnome.aisleriot
       ];
     };
     setUserOptionsModule = {
       home-modules.stylix.enable = true;
       home-modules.stylix.flavour = "latte";
+    };
+    setLargeFonts = {
+      config,
+      lib,
+      ...
+    }: let
+      cfg = config.home-modules.stylix;
+    in {
+      stylix.fonts.sizes = lib.mkIf cfg.enable {
+        applications = 15;
+        desktop = 15;
+        popups = 15;
+      };
     };
   in
     mkUser {
@@ -47,6 +65,6 @@ in {
         "docker"
         "networkmanager"
       ];
-      homeModules = [setUserOptionsModule addUserPackages];
+      homeModules = [setUserOptionsModule addUserPackages setLargeFonts];
     };
 }
