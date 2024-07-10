@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   lib,
   config,
   ...
@@ -15,8 +16,7 @@ in {
       enable = lib.mkEnableOption "enable stylix setup";
       wallpaper = lib.mkOption {
         description = "Path of the image to set as a wallpaper";
-        type = with lib.types; coercedTo package toString path;
-        default = defaultWallpaper;
+        default = null;
       };
       flavour = lib.mkOption {
         description = "Catppuccin flavour";
@@ -28,7 +28,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     stylix = {
-      image = cfg.wallpaper;
+      image = lib.mkIf (!(builtins.isNull cfg.wallpaper)) cfg.wallpaper;
       targets = {
         gnome.enable = true;
         nixvim.enable = true;

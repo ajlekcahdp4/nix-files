@@ -20,7 +20,7 @@ in {
       localConf = {
         settings.allowTcpFallbackRelay = true;
       };
-      port = 9995;
+      # port = 9995;
     };
 
     #    environment.persistence."/persist/system" = {

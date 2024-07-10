@@ -23,10 +23,10 @@
     stylix = {
       enable = true;
       flavour = "latte";
-      wallpaper = lib.mkDefault ./wallpaper.jpg;
+      wallpaper = ./wallpaper.jpg;
     };
   };
-
+  security.sudo.enable = true;
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -65,12 +65,14 @@
     ];
   };
 
-  # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.defaultSession = "plasma";
+  services.desktopManager.plasma6.enable = true;
+  environment.plasma6.excludePackages = with pkgs; [ kdePackages.systemsettings wezterm plasma-browser-integration];
+  environment.systemPackages = with pkgs; [ kdePackages.kde-gtk-config ];
+  services.dbus.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
   services.openssh = {
     enable = true;
     settings = {
@@ -98,12 +100,6 @@
   #   ];
   # };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  # environment.systemPackages = with pkgs; [
-  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #   wget
-  # ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -3,7 +3,7 @@
   config,
   inputs,
   lib,
-  sgdgfgd,
+  sgdgsdfsdfsffsdgfgd,
   ...
 }: let
   cfg = config.modules.stylix;
@@ -13,6 +13,7 @@
   };
 in {
   imports = [inputs.stylix.nixosModules.stylix];
+  
   options.modules.stylix = {
     enable = lib.mkEnableOption "Enable stylix setup";
     flavour = lib.mkOption {
@@ -26,8 +27,10 @@ in {
       default = defaultWallpaper;
     };
   };
+  
   config = lib.mkIf cfg.enable {
     stylix = {
+      image = cfg.wallpaper;
       autoEnable = lib.mkOverride 75 true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-${cfg.flavour}.yaml";
       targets = {
