@@ -8,9 +8,8 @@
 
   modules = {
     stylix = {
-      enable = true;
-      flavour = lib.mkDefault "mocha";
-      wallpaper = lib.mkDefault ./wallpaper.jpg;
+      enable = lib.mkDefault true;
+      flavour = lib.mkDefault "latte";
     };
     eza.enable = true;
     fzf.enable = false;

@@ -1,4 +1,4 @@
-{lib, ...}: let
+{lib,  ...}: let
   inherit (lib) mkUser;
 in {
   alexander = let
@@ -6,7 +6,7 @@ in {
       modules.direnv.enable = true;
       modules.gnome.enable = true;
       modules.firefox.enable = true;
-      modules.stylix.flavour = "latte";
+      modules.stylix.enable = false;
     };
     gitSetupModule = {
       programs.git = {
@@ -24,17 +24,26 @@ in {
         "docker"
         "networkmanager"
       ];
-      homeModules = [setUserOptionsModule gitSetupModule];
+      homeModules = [setUserOptionsModule gitSetupModule ];
     };
 
-  alexey = mkUser {
+  alexey = let
+    addUserPackages = {inputs, ...}:{
+      home.packages = [
+        inputs.yandex-browser.packages.x86_64-linux.yandex-browser-stable];
+    };
+    setUserOptionsModule = {
+      modules.stylix.enable = false;
+      modules.stylix.flavour = "mocha";
+    };
+  in mkUser {
     name = "alexey";
     normalUser = true;
-    groups = ["audio" "video"];
+    groups = ["wheel" "audio" "video"];
     optionalGroups = [
       "docker"
       "networkmanager"
     ];
-    homeModules = [];
+    homeModules = [setUserOptionsModule addUserPackages];
   };
 }
