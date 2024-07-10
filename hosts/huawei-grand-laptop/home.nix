@@ -6,11 +6,12 @@
 }: {
   imports = [];
 
+  home-modules.stylix = {
+    enable = lib.mkDefault true;
+    flavour = lib.mkDefault "latte";
+    wallpaper = ./wallpaper.jpg;
+  };
   modules = {
-    stylix = {
-      enable = lib.mkDefault true;
-      flavour = lib.mkDefault "latte";
-    };
     eza.enable = true;
     fzf.enable = false;
     direnv.enable = lib.mkDefault false;
@@ -18,6 +19,7 @@
     zsh.enable = true;
     zellij.enable = true;
     gnome.enable = lib.mkDefault false;
+    plasma.enable = lib.mkDefault true;
     wezterm.enable = true;
     atuin.enable = true;
     starship.enable = true;
