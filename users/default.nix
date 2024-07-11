@@ -56,15 +56,21 @@ in {
         popups = 15;
       };
     };
+
+    setRuLocale = {
+      home.language.base = "ru_RU.UTF-8";
+      programs.plasma.configFile = {
+        plasma-localerc.Formats."LANG" = "ru_RU.UTF-8";
+      };
+    };
   in
     mkUser {
       name = "alexey";
       normalUser = true;
-      groups = ["wheel" "audio" "video"];
+      groups = ["audio" "video"];
       optionalGroups = [
-        "docker"
         "networkmanager"
       ];
-      homeModules = [setUserOptionsModule addUserPackages setLargeFonts];
+      homeModules = [setUserOptionsModule addUserPackages setLargeFonts setRuLocale];
     };
 }

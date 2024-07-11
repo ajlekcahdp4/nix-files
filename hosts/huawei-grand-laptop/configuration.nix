@@ -50,6 +50,8 @@
     };
   };
 
+  users.users.alexey.hashedPassword = "";
+
   nixpkgs = {
     # You can add overlays here
     overlays = [
