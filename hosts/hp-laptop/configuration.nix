@@ -20,12 +20,11 @@
     impermanence.enable = false;
     zerotier.enable = true;
     plymouth.enable = true;
-    stylix = {
-      enable = true;
-      flavour = "mocha";
-    };
   };
-
+  home-modules.stylix = {
+    enable = true;
+    flavour = "mocha";
+  };
   nixpkgs = {
     # You can add overlays here
     overlays = [
