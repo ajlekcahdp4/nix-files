@@ -1,6 +1,4 @@
 # Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
   inputs,
   outputs,
@@ -37,21 +35,29 @@
     };
   };
 
-  services.printing = {
-    enable = true;
-    drivers = with pkgs; [epson_201207w];
-  };
-  hardware = {
-    sane = {
-      enable = true;
-      extraBackends = with pkgs; [
-        epkowa
-      ];
-    };
-  };
-
+  services.printing.enable = true;
+  services.printing.browsing = true;
+  services.printing.drivers = with pkgs; [
+    gutenprint
+    gutenprintBin
+    epson_201207w
+    epson-workforce-635-nx625-series
+    epson-escpr2
+    epson-escpr
+    epson-alc1100
+    epson-201401w
+    epson-201106w
+    hplip
+    samsung-unified-linux-driver
+    splix
+    brlaser
+    brgenml1lpr
+    brgenml1cupswrapper
+    cnijfilter2
+  ];
+  services.avahi.enable = true;
+  services.avahi.nssmdns4 = true;
   users.users.alexey.hashedPassword = "";
-
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -113,9 +119,7 @@
     };
   };
 
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  sound.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.alice = {

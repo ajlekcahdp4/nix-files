@@ -5,10 +5,12 @@
   config,
   ...
 }: {
-  hardware.pulseaudio = {
-    enable = true;
-    support32Bit = true;
-  };
+  hardware.pulseaudio.enable = true;
+
+  #  services.pipewire = {
+  #    enable = true;
+  #    pulse.enable = true;   # See hardware.pulseaudio.enable
+  #  };
   sound.enable = true;
 
   hardware.bluetooth = {

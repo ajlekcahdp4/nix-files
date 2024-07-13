@@ -16,16 +16,21 @@ in {
         userEmail = "alex.rom23@mail.ru";
       };
     };
+    addHomePackages = {pkgs, ...}: {
+      home.packages = [
+        pkgs.epsonscan2
+      ];
+    };
   in
     mkUser {
       name = "alexander";
       normalUser = true;
-      groups = ["wheel" "audio" "video"];
+      groups = ["wheel" "sound" "audio" "video" "scanner" "lp"];
       optionalGroups = [
         "docker"
         "networkmanager"
       ];
-      homeModules = [setUserOptionsModule gitSetupModule];
+      homeModules = [setUserOptionsModule gitSetupModule addHomePackages];
     };
 
   alexey = let
@@ -67,7 +72,7 @@ in {
     mkUser {
       name = "alexey";
       normalUser = true;
-      groups = ["audio" "video"];
+      groups = ["audio" "video" "scanner" "lp"];
       optionalGroups = [
         "networkmanager"
       ];
