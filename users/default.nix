@@ -17,8 +17,9 @@ in {
       };
     };
     addHomePackages = {pkgs, ...}: {
-      home.packages = [
-        pkgs.epsonscan2
+      home.packages = with pkgs; [
+        epsonscan2
+        gnome.simple-scan
       ];
     };
   in
@@ -39,10 +40,15 @@ in {
       pkgs,
       ...
     }: {
-      home.packages = [
-        inputs.yandex-browser.packages.x86_64-linux.yandex-browser-stable
-        pkgs.gnome.aisleriot
-      ];
+      home.packages = with pkgs;
+        [
+          epsonscan2
+          gnome.simple-scan
+          gnome.aisleriot
+        ]
+        ++ [
+          inputs.yandex-browser.packages.x86_64-linux.yandex-browser-stable
+        ];
     };
     setUserOptionsModule = {
       home-modules.stylix.enable = true;

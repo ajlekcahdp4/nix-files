@@ -6,11 +6,11 @@
 }: {
   imports = [];
 
+  home-modules.stylix = {
+    enable = true;
+    flavour = "mocha";
+  };
   modules = {
-    stylix = {
-      enable = true;
-      flavour = "mocha";
-    };
     eza.enable = true;
     fzf.enable = false;
     direnv.enable = lib.mkDefault false;

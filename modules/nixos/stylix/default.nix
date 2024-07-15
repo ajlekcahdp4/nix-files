@@ -22,7 +22,7 @@ in {
     };
     wallpaper = lib.mkOption {
       description = "Image to set as a wallpaper";
-      type = with lib.types; coercedTo package toString path;
+      type = with lib.types; coercedTo package toString path or null;
       default = defaultWallpaper;
     };
   };
