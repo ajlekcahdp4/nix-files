@@ -12,6 +12,7 @@
   imports = [
     ../common
     outputs.nixosModules
+    inputs.home-manager.nixosModules.default
     ./hardware-configuration-huawei.nix
     #(import ../modules/nixos/disko.nix {device = "/dev/nvme0n1";})
   ];
@@ -20,10 +21,10 @@
     impermanence.enable = false;
     zerotier.enable = true;
     plymouth.enable = true;
-  };
-  home-modules.stylix = {
-    enable = true;
-    flavour = "mocha";
+    stylix = {
+      enable = true;
+      flavour = "mocha";
+    };
   };
   nixpkgs = {
     # You can add overlays here
