@@ -16,6 +16,16 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
+  boot.kernelPackages = pkgs.linuxPackages_6_8;
+
+  boot.modprobeConfig.enable = true;
+  boot.extraModprobeConfig = ''
+    options snd_soc_sof_es8336 quirk=0x02
+    options snd-hda-intel dmic_detect=0
+  '';
+
+  hardware.enableAllFirmware = true;
+  hardware.firmware = with pkgs; [sof-firmware alsa-firmware];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/07ea9cb9-6557-44e5-a4b6-652ff0ed1f9a";

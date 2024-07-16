@@ -13,6 +13,20 @@
     ./hardware-configuration.nix
     #(import ../modules/nixos/disko.nix {device = "/dev/nvme0n1";})
   ];
+
+  hardware.pulseaudio.enable = lib.mkForce false;
+  sound.enable = lib.mkForce false;
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    audio.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    wireplumber.enable = true;
+    pulse.enable = true;
+  };
+
   modules = {
     impermanence.enable = false;
     zerotier.enable = true;
@@ -38,26 +52,9 @@
   services.printing.enable = true;
   services.printing.browsing = true;
   services.printing.drivers = with pkgs; [
-    gutenprint
-    gutenprintBin
     epson_201207w
-    epson-workforce-635-nx625-series
-    epson-escpr2
-    epson-escpr
-    epson-alc1100
-    epson-201401w
-    epson-201106w
-    hplip
-    samsung-unified-linux-driver
-    splix
-    brlaser
-    brgenml1lpr
-    brgenml1cupswrapper
-    cnijfilter2
   ];
-  services.avahi.enable = true;
-  services.avahi.nssmdns4 = true;
-  users.users.alexey.hashedPassword = "";
+
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -118,28 +115,6 @@
       PasswordAuthentication = false;
     };
   };
-
-  sound.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.alice = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  #   packages = with pkgs; [
-  #     firefox
-  #     tree
-  #   ];
-  # };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

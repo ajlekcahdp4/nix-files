@@ -5,13 +5,8 @@
   config,
   ...
 }: {
-  hardware.pulseaudio.enable = true;
-
-  #  services.pipewire = {
-  #    enable = true;
-  #    pulse.enable = true;   # See hardware.pulseaudio.enable
-  #  };
-  sound.enable = true;
+  hardware.pulseaudio.enable = lib.mkDefault true;
+  sound.enable = lib.mkDefault false;
 
   hardware.bluetooth = {
     enable = true;
