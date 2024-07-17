@@ -16,30 +16,20 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
-  boot.kernelPackages = pkgs.linuxPackages_6_8;
-
-  boot.modprobeConfig.enable = true;
-  boot.extraModprobeConfig = ''
-    options snd_soc_sof_es8336 quirk=0x02
-    options snd-hda-intel dmic_detect=0
-  '';
-
-  hardware.enableAllFirmware = true;
-  hardware.firmware = with pkgs; [sof-firmware alsa-firmware];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/07ea9cb9-6557-44e5-a4b6-652ff0ed1f9a";
+    device = "/dev/disk/by-uuid/cd67fb6c-ea34-4271-b8f9-0180f2dbf3b6";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/2945-A45A";
+    device = "/dev/disk/by-uuid/E2A4-8440";
     fsType = "vfat";
     options = ["fmask=0022" "dmask=0022"];
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/b4dfb036-21bb-44f6-9f7b-fad37f8c058a";}
+    {device = "/dev/disk/by-uuid/c826d9ce-e6c5-478e-9229-3265965287ba";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

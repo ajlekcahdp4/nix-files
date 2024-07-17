@@ -13,7 +13,7 @@
     ../common
     outputs.nixosModules
     inputs.home-manager.nixosModules.default
-    ./hardware-configuration-huawei.nix
+    ./hardware-configuration.nix
     #(import ../modules/nixos/disko.nix {device = "/dev/nvme0n1";})
   ];
 
