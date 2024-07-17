@@ -6,7 +6,6 @@
   ...
 }: {
   hardware.pulseaudio.enable = lib.mkDefault true;
-  sound.enable = lib.mkDefault false;
 
   hardware.bluetooth = {
     enable = true;

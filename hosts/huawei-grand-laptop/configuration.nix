@@ -14,18 +14,9 @@
     #(import ../modules/nixos/disko.nix {device = "/dev/nvme0n1";})
   ];
 
-  hardware.pulseaudio.enable = lib.mkForce false;
-  sound.enable = lib.mkForce false;
+  hardware.pulseaudio.enable = lib.mkForce true;
 
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    audio.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    wireplumber.enable = true;
-    pulse.enable = true;
-  };
 
   modules = {
     impermanence.enable = false;
@@ -38,8 +29,8 @@
     };
   };
   security.sudo.enable = true;
-  security.pam.services.sddm.enableKwallet = false;
 
+  security.pam.services.sddm.enableKwallet = false;
   environment.etc = {
     "xdg/kwalletrc" = {
       text = ''
@@ -79,7 +70,7 @@
       allowUnfree = true;
     };
   };
-  networking.hostName = "laptop";
+  networking.hostName = "huawei-grand-laptop";
 
   time.timeZone = lib.mkDefault "Europe/Moscow";
   i18n = {
@@ -115,6 +106,19 @@
       PasswordAuthentication = false;
     };
   };
+
+  boot.kernelPackages = pkgs.linuxPackages_6_9;
+
+  # Workaround to make sound on huawei laptop work
+  # https://bbs.archlinux.org/viewtopic.php?pid=2008901#p2008901
+  boot.modprobeConfig.enable = true;
+  boot.extraModprobeConfig = ''
+    options snd_soc_sof_es8336 quirk=0x02
+     options snd-hda-intel dmic_detect=0
+  '';
+
+  hardware.enableAllFirmware = true;
+  hardware.firmware = with pkgs; [sof-firmware alsa-firmware];
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

@@ -19,7 +19,7 @@ in {
     addHomePackages = {pkgs, ...}: {
       home.packages = with pkgs; [
         epsonscan2
-        gnome.simple-scan
+        simple-scan
       ];
     };
   in
@@ -43,7 +43,7 @@ in {
       home.packages = with pkgs;
         [
           epsonscan2
-          gnome.simple-scan
+          simple-scan
           gnome.aisleriot
         ]
         ++ [
