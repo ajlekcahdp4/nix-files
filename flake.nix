@@ -44,6 +44,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -92,6 +97,12 @@
         users = {inherit (users) alexander alexey;};
         hostInfo = hosts.huawei-grand-laptop;
       };
+
+      home-lab-hp = lib.mkHostSystem {
+        users = {inherit (users) alexander;};
+        hostInfo = hosts.home-lab-hp;
+        modules = [inputs.microvm.nixosModules.host];
+      };
     };
 
     # Standalone home-manager configuration entrypoint
@@ -114,6 +125,12 @@
       "alexey@huawei-grand-laptop" = lib.mkHomeConfig {
         user = users.alexey;
         host = hosts.huawei-grand-laptop;
+        modules = [setNixModule];
+      };
+
+      "alexander@home-lab-hp" = lib.mkHomeConfig {
+        user = users.alexander;
+        host = hosts.home-lab-hp;
         modules = [setNixModule];
       };
     };

@@ -13,7 +13,7 @@ in {
   }: {
     inherit system homeModules hostname;
 
-    nixosModules = nixosModules ++ [inputs.home-manager.nixosModules.home-manager];
+    nixosModules = nixosModules ++ [outputs.nixosModules inputs.home-manager.nixosModules.home-manager];
   };
 
   mkHostSystem = {
