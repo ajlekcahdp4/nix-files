@@ -44,7 +44,7 @@
   programs.ssh.startAgent = true;
   users.defaultUserShell = pkgs.zsh;
 
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = lib.mkDefault true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
