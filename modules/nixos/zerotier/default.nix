@@ -10,7 +10,10 @@ in {
   ];
 
   options.modules.zerotier.enable = lib.mkEnableOption "Enable zerotier";
-
+  options.modules.zerotier.port = lib.mkOption {
+    description = "port for zerotier";
+    default = 9993;
+  };
   config = lib.mkIf cfg.enable {
     services.zerotierone = let
       networkId = "272f5eae1653139f";
@@ -20,7 +23,7 @@ in {
       localConf = {
         settings.allowTcpFallbackRelay = true;
       };
-      # port = 9995;
+      port = cfg.port;
     };
 
     #    environment.persistence."/persist/system" = {

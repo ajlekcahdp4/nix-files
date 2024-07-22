@@ -17,7 +17,10 @@
 
   modules = {
     impermanence.enable = false;
-    zerotier.enable = true;
+    zerotier = {
+      enable = true;
+      port = 9995;
+    };
     plymouth.enable = true;
     stylix = {
       enable = true;

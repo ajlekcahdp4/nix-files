@@ -35,16 +35,27 @@ in {
         systemd.network = {
           enable = true;
         };
+        users.users.root.initialPassword = "";
+        users.users.alexander = {
+          initialPassword = "test";
+          isNormalUser = true;
+          extraGroups = ["wheel"];
+          openssh.authorizedKeys.keys = [
+            (builtins.readFile ./microvm-key.pub)
+          ];
+        };
         users.users.root.openssh.authorizedKeys.keys = [
           (builtins.readFile ./microvm-key.pub)
         ];
+
         services.openssh = {
           enable = true;
-          settings.PermitRootLogin = "yes";
+          settings.PermitRootLogin = "no";
+          settings.PasswordAuthentication = false;
           openFirewall = true;
         };
 
-        services.getty.autologinUser = "root";
+        services.getty.autologinUser = "alexander";
         services.nextcloud = {
           enable = true;
           hostName = "nextcloud.home";
