@@ -116,7 +116,9 @@
     options snd_soc_sof_es8336 quirk=0x02
      options snd-hda-intel dmic_detect=0
   '';
-
+  users.users.alexander.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFhCFWEwzQGL+5pdXQ4zpo0GvmjIrboGvAt7dE1YHFmp alex.rom23@mail.ru"
+  ];
   hardware.enableAllFirmware = true;
   hardware.firmware = with pkgs; [sof-firmware alsa-firmware];
 
