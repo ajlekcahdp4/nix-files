@@ -70,6 +70,22 @@ in {
           };
         };
         environment.etc."nextcloud-admin-pass".text = "11111111111";
+        services.frp = {
+          enable = true;
+          role = "client";
+          settings = {
+            serverAddr = "185.180.231.81";
+            serverPort = 7154;
+            proxies = [
+              {
+                name = "web";
+                type = "tcp";
+                localIp = "127.0.0.1";
+                localPort = 80;
+              }
+            ];
+          };
+        };
         networking.hostName = "nextcloud-microvm";
         networking.firewall.allowedTCPPorts = [22 80 443];
         system.stateVersion = config.system.nixos.version;
