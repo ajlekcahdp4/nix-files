@@ -79,6 +79,7 @@
       PasswordAuthentication = false;
     };
   };
+  boot.kernelPackages = pkgs.linuxPackages_6_9;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
