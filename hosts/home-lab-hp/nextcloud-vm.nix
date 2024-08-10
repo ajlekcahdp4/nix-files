@@ -4,6 +4,7 @@
   config,
   ...
 }: let
+  config' = config.microvm.vms.nextcloud-microvm.config.config;
   bridgeName = "virbr0";
   vmMacAddr = "02:00:00:03:00:02";
   vmTapId = "vm-nextcloud";
@@ -23,6 +24,20 @@ in {
               tag = "ro-store";
               proto = "virtiofs";
             }
+            {
+            source = "/var/lib/microvms/nextcloud-vm/_state";
+            mountPoint = "${config'.services.nextcloud.home}";
+            tag = "state";
+            proto = "virtiofs";
+            socket = "state.sock";
+          }
+          {
+            source = "/stank/nextcloud";
+            mountPoint = "${config'.services.nextcloud.datadir}";
+            tag = "data";
+            proto = "virtiofs";
+            socket = "data.sock";
+          }
           ];
           interfaces = [
             {
@@ -60,13 +75,14 @@ in {
           enable = true;
           hostName = "nextcloud.home";
           home = "/var/lib/nextcloud-home";
+          datadir = "/data";
           package = pkgs.nextcloud29;
           config = {
             adminpassFile = "/etc/nextcloud-admin-pass";
           };
           settings = {
             trusted_proxies = ["192.168.90.1"];
-            trusted_domains = ["localhost" "192.168.90.2"];
+            trusted_domains = ["localhost" "192.168.90.2" "185.180.231.81" "185.180.231.81:5623" "alexanderromanov.tech" "www.alexanderromanov.tech"];
           };
         };
         environment.etc."nextcloud-admin-pass".text = "11111111111";
@@ -82,6 +98,7 @@ in {
                 type = "tcp";
                 localIp = "127.0.0.1";
                 localPort = 80;
+                remotePort = 5623;
               }
             ];
           };
@@ -145,7 +162,7 @@ in {
     enable = true;
     virtualHosts."nextcloud.home" = {
       locations."/" = {
-        proxyPass = "http://192.168.90.2:80";
+        proxyPass = "https://192.168.90.2:443";
       };
     };
   };
