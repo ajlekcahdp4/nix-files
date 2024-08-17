@@ -109,9 +109,6 @@ in {
       };
     };
   };
-  users.users.root.openssh.authorizedKeys.keys = [
-    (builtins.readFile ./microvm-key.pub)
-  ];
   networking.networkmanager.enable = lib.mkForce true;
   networking.hostName = "home-lab-hp";
   systemd.network = {
