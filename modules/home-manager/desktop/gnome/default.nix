@@ -46,8 +46,8 @@ in {
       };
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         binding = "<Alt><Ctrl>t";
-        command = "wezterm";
-        name = "open wezterm";
+        command = "alacritty";
+        name = "open alacritty";
       };
       "org/gnome/settings-daemon/plugins/power" = {
         sleep-inactive-ac-type = "nothing";

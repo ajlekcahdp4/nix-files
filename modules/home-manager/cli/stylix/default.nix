@@ -39,6 +39,8 @@ in {
         zellij.enable = true;
         btop.enable = true;
         wezterm.enable = true;
+        alacritty.enable = true;
+        kitty.enable = true;
         kde.enable = false;
       };
       opacity = let

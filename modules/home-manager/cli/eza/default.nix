@@ -13,7 +13,8 @@ in {
       enable = true;
       git = true;
       icons = lib.mkDefault true;
-
+      enableBashIntegration = true;
+      enableZshIntegration = true;
       extraOptions = [
         "--group-directories-first"
         "--header"

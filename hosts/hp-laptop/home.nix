@@ -2,6 +2,7 @@
   inputs,
   outputs,
   lib,
+  pkgs,
   ...
 }: {
   imports = [];
@@ -12,13 +13,14 @@
   };
   modules = {
     eza.enable = true;
-    fzf.enable = false;
+    fzf.enable = lib.mkDefault false;
     direnv.enable = lib.mkDefault false;
     nixvim.enable = true;
     zsh.enable = true;
     zellij.enable = true;
     gnome.enable = lib.mkDefault false;
-    wezterm.enable = true;
+    wezterm.enable = false;
+    alacritty.enable = true;
     atuin.enable = true;
     starship.enable = true;
     firefox.enable = lib.mkDefault false;
@@ -30,5 +32,10 @@
 
   programs.bat.enable = true;
   programs.ripgrep.enable = true;
+
+  home.packages = with pkgs; [
+    noto-fonts-emoji
+    nerdfonts
+  ];
   home.stateVersion = "23.11";
 }

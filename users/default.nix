@@ -2,10 +2,11 @@
   inherit (lib) mkUser;
 in {
   alexander = let
-    setUserOptionsModule = {
+    setUserOptionsModule = {lib, ...}: {
       modules.direnv.enable = true;
       modules.gnome.enable = true;
       modules.firefox.enable = true;
+      modules.fzf.enable = lib.mkForce true;
       home-modules.stylix.enable = true;
       home-modules.stylix.flavour = "mocha";
     };
