@@ -34,6 +34,8 @@ in {
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-${cfg.flavour}.yaml";
       targets = {
         plymouth.enable = true;
+        gnome.enable = true;
+        gtk.enable = true;
       };
       opacity = let
         alpha = 0.95;
@@ -44,8 +46,8 @@ in {
         applications = alpha;
       };
       cursor = {
-        package = pkgs.catppuccin-cursors.mochaDark;
-        name = "Catppuccin-Mocha-Dark-Cursors";
+        package = pkgs.capitaine-cursors;
+        name = "capitaine-cursors";
       };
     };
   };

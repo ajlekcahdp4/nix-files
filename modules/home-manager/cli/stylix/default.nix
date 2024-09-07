@@ -31,6 +31,7 @@ in {
       image = cfg.wallpaper;
       targets = {
         gnome.enable = true;
+        gtk.enable = true;
         nixvim.enable = true;
         nixvim.transparent_bg.main = true;
         nixvim.transparent_bg.sign_column = true;
@@ -54,8 +55,8 @@ in {
       autoEnable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-${cfg.flavour}.yaml";
       cursor = {
-        package = pkgs.catppuccin-cursors.mochaDark;
-        name = "Catppuccin-Mocha-Dark-Cursors";
+        package = pkgs.capitaine-cursors;
+        name = "capitaine-cursors";
       };
     };
   };
