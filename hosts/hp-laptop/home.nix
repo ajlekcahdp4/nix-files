@@ -36,6 +36,7 @@
   home.packages = with pkgs; [
     noto-fonts-emoji
     nerdfonts
+    nekoray
   ];
   home.stateVersion = "23.11";
 }
