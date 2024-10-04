@@ -70,6 +70,35 @@ in {
           gt = "type_definition";
         };
       };
+      autoCmd = [
+        {
+          event = [
+        "BufNewFile"
+        "BufRead"
+      ];
+      pattern = [
+        "meson.build"
+        "meson_options.txt"
+        "meson.options"
+      ];
+      callback.__raw = 
+         ''
+         function(args)
+            local match = vim.fs.find(
+              {"meson_options.txt", "meson.options", ".git"},
+              {path = args.file, upward = true}
+            )[1]
+            local root_dir = match and vim.fn.fnamemodify(match, ":p:h") or nil
+            vim.lsp.start({
+              name = "mesonlsp",
+              cmd = {"${lib.getExe pkgs.mesonlsp}", "--lsp"},
+              root_dir = root_dir,
+            })
+          end
+         '';
+        }
+      ];
+
       plugins.cmp = {
         enable = true;
         autoEnableSources = true;
