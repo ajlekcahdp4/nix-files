@@ -127,6 +127,28 @@ in {
           powerline_fonts = 1;
         };
       };
+      plugins.image = {
+        enable = true;
+        package = pkgs.vimPlugins.image-nvim;
+      };
+      plugins.molten = {
+        enable = true;
+        imageProvider = "image.nvim";
+      };
+      extraPackages = with pkgs; [imagemagick];
+      extraPython3Packages = p:
+        with p; [
+          pynvim
+          jupyter-client
+          jupyter-core
+          cairosvg
+          pnglatex
+          plotly
+          pyperclip
+          nbformat
+          jupytext
+          ipykernel
+        ];
       extraConfigVim = ''
         let g:airline#extensions#tabline#enabled = 1
         set mouse=""

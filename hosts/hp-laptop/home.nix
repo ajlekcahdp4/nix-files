@@ -37,6 +37,7 @@
     noto-fonts-emoji
     nerdfonts
     nekoray
+    xclip
   ];
   home.stateVersion = "23.11";
 }
