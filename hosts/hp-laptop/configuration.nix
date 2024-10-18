@@ -79,7 +79,13 @@
       PasswordAuthentication = false;
     };
   };
-  boot.kernelPackages = pkgs.linuxPackages_6_9;
+  virtualisation.docker.enable = true;
+  users.users.alexander.extraGroups = ["docker"];
+  environment.systemPackages = with pkgs; [
+    distrobox
+  ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  hardware.pulseaudio.enable = lib.mkForce false;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

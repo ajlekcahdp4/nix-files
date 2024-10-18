@@ -22,13 +22,14 @@ in {
     };
     wallpaper = lib.mkOption {
       description = "Image to set as a wallpaper";
-      type = with lib.types; coercedTo package toString path or null;
+      type = with lib.types; coercedTo package toString path;
       default = defaultWallpaper;
     };
   };
 
   config = lib.mkIf cfg.enable {
     stylix = {
+      enable = true;
       image = cfg.wallpaper;
       autoEnable = lib.mkOverride 75 true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-${cfg.flavour}.yaml";

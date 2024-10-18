@@ -73,29 +73,28 @@ in {
       autoCmd = [
         {
           event = [
-        "BufNewFile"
-        "BufRead"
-      ];
-      pattern = [
-        "meson.build"
-        "meson_options.txt"
-        "meson.options"
-      ];
-      callback.__raw = 
-         ''
-         function(args)
-            local match = vim.fs.find(
-              {"meson_options.txt", "meson.options", ".git"},
-              {path = args.file, upward = true}
-            )[1]
-            local root_dir = match and vim.fn.fnamemodify(match, ":p:h") or nil
-            vim.lsp.start({
-              name = "mesonlsp",
-              cmd = {"${lib.getExe pkgs.mesonlsp}", "--lsp"},
-              root_dir = root_dir,
-            })
-          end
-         '';
+            "BufNewFile"
+            "BufRead"
+          ];
+          pattern = [
+            "meson.build"
+            "meson_options.txt"
+            "meson.options"
+          ];
+          callback.__raw = ''
+            function(args)
+               local match = vim.fs.find(
+                 {"meson_options.txt", "meson.options", ".git"},
+                 {path = args.file, upward = true}
+               )[1]
+               local root_dir = match and vim.fn.fnamemodify(match, ":p:h") or nil
+               vim.lsp.start({
+                 name = "mesonlsp",
+                 cmd = {"${lib.getExe pkgs.mesonlsp}", "--lsp"},
+                 root_dir = root_dir,
+               })
+             end
+          '';
         }
       ];
 
@@ -120,15 +119,16 @@ in {
           "<leader>fb" = "buffers";
         };
       };
+      plugins.web-devicons.enable = true;
       plugins.airline = {
         enable = true;
         settings = {
           theme = lib.mkForce "catppuccin";
+          powerline_fonts = 1;
         };
       };
       extraConfigVim = ''
         let g:airline#extensions#tabline#enabled = 1
-        let g:airline_powerline_fonts = 1
         set mouse=""
       '';
       extraConfigLua = ''
