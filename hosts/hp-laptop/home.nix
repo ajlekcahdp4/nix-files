@@ -16,6 +16,7 @@
     fzf.enable = lib.mkDefault false;
     direnv.enable = lib.mkDefault false;
     nixvim.enable = true;
+    vscode.enable = true;
     zsh.enable = true;
     zellij.enable = true;
     gnome.enable = lib.mkDefault false;

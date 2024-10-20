@@ -140,6 +140,11 @@ in {
         with p; [
           pynvim
           jupyter-client
+          matplotlib
+          scikit-learn
+          seaborn
+          statsmodels
+          scipy
           jupyter-core
           cairosvg
           pnglatex

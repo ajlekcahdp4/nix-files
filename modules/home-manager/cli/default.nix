@@ -10,5 +10,6 @@
     ./zellij
     ./zsh
     ./stylix
+    ./vscode.nix
   ];
 }
