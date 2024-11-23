@@ -20,6 +20,7 @@ in {
     programs.nixvim = {
       enable = true;
       enableMan = true;
+      clipboard.providers.xclip.enable = true;
       colorschemes.catppuccin = {
         enable = true;
         settings = {
