@@ -84,8 +84,19 @@
   environment.systemPackages = with pkgs; [
     distrobox
   ];
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
   hardware.pulseaudio.enable = lib.mkForce false;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiVdpau
+      libvdpau-va-gl
+      intel-compute-runtime
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

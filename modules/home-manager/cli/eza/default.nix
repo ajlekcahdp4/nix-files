@@ -12,7 +12,7 @@ in {
     programs.eza = {
       enable = true;
       git = true;
-      icons = lib.mkDefault true;
+      icons = lib.mkDefault "auto";
       enableBashIntegration = true;
       enableZshIntegration = true;
       extraOptions = [

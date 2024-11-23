@@ -62,6 +62,7 @@ in {
             enable = true;
             autostart = true;
           };
+          typst_lsp.enable = true;
         };
         keymaps.lspBuf = {
           gD = "references";
@@ -133,7 +134,7 @@ in {
       };
       plugins.molten = {
         enable = true;
-        imageProvider = "image.nvim";
+        settings.image_provider = "image.nvim";
       };
       extraPackages = with pkgs; [imagemagick];
       extraPython3Packages = p:
