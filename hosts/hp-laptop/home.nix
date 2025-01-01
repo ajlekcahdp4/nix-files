@@ -35,8 +35,7 @@
   programs.ripgrep.enable = true;
 
   home.packages = with pkgs; [
-    noto-fonts-emoji
-    nerdfonts
+    nerd-fonts.noto
     nekoray
     xclip
   ];
