@@ -63,7 +63,7 @@ in {
             enable = true;
             autostart = true;
           };
-          typst_lsp.enable = true;
+          tinymist.enable = true;
         };
         keymaps.lspBuf = {
           gD = "references";
