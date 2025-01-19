@@ -14,7 +14,7 @@
     #(import ../modules/nixos/disko.nix {device = "/dev/nvme0n1";})
   ];
 
-  hardware.pulseaudio.enable = lib.mkForce true;
+  services.pulseaudio.enable = lib.mkForce true;
 
   security.rtkit.enable = true;
 

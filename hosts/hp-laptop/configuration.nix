@@ -86,7 +86,7 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  hardware.pulseaudio.enable = lib.mkForce false;
+  services.pulseaudio.enable = lib.mkForce false;
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
