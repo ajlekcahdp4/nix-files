@@ -33,6 +33,10 @@
 
   programs.bat.enable = true;
   programs.ripgrep.enable = true;
+  programs.thunderbird = {
+    enable = true;
+    profiles.default.isDefault = true;
+  };
 
   home.packages = with pkgs; [
     nerd-fonts.noto
