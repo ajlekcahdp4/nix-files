@@ -81,58 +81,61 @@ in {
           '';
         };
 
-        extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+        extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
           ublock-origin
           tridactyl
           youtube-shorts-block
         ];
 
-        bookmarks = [
-          {
-            name = "wikipedia";
-            tags = ["wiki"];
-            keyword = "wiki";
-            url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
-          }
-          {
-            name = "github";
-            tags = ["github"];
-            keyword = "github";
-            url = "https://github.com/";
-          }
-          {
-            name = "mail";
-            url = "https://e.mail.ru/inbox/";
-          }
-          {
-            name = "gmail";
-            url = "https://mail.google.com/mail/u/0/#inbox";
-          }
-          {
-            name = "ymail";
-            url = "https://mail.yandex.ru";
-          }
-          {
-            name = "youtube";
-            url = "https://youtube.com";
-          }
-          {
-            name = "dictionary";
-            url = "https://dictionary.cambridge.org";
-          }
-          {
-            name = "translator";
-            url = "https://translate.yandex.ru/";
-          }
-          {
-            name = "telegram";
-            url = "https://web.telegram.org/a/";
-          }
-          {
-            name = "VK";
-            url = "https://vk.com/im";
-          }
-        ];
+        bookmarks = {
+          force = true;
+          settings = [
+            {
+              name = "wikipedia";
+              tags = ["wiki"];
+              keyword = "wiki";
+              url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
+            }
+            {
+              name = "github";
+              tags = ["github"];
+              keyword = "github";
+              url = "https://github.com/";
+            }
+            {
+              name = "mail";
+              url = "https://e.mail.ru/inbox/";
+            }
+            {
+              name = "gmail";
+              url = "https://mail.google.com/mail/u/0/#inbox";
+            }
+            {
+              name = "ymail";
+              url = "https://mail.yandex.ru";
+            }
+            {
+              name = "youtube";
+              url = "https://youtube.com";
+            }
+            {
+              name = "dictionary";
+              url = "https://dictionary.cambridge.org";
+            }
+            {
+              name = "translator";
+              url = "https://translate.yandex.ru/";
+            }
+            {
+              name = "telegram";
+              url = "https://web.telegram.org/a/";
+            }
+            {
+              name = "VK";
+              url = "https://vk.com/im";
+            }
+          ];
+        };
       };
     };
   };

@@ -33,10 +33,14 @@ in {
       targets = {
         gnome.enable = true;
         gtk.enable = true;
+        qt.platform = "qtct";
         nixvim.enable = true;
-        nixvim.transparent_bg.main = true;
-        nixvim.transparent_bg.sign_column = true;
-        firefox.enable = true;
+        nixvim.transparentBackground.main = true;
+        nixvim.transparentBackground.signColumn = true;
+        firefox = {
+          enable = true;
+          profileNames = ["alexander"];
+        };
         bat.enable = true;
         zellij.enable = true;
         btop.enable = true;
@@ -44,6 +48,9 @@ in {
         alacritty.enable = true;
         kitty.enable = true;
         kde.enable = false;
+        vscode = {
+          profileNames = ["default"];
+        };
       };
       opacity = let
         alpha = 0.95;
@@ -58,6 +65,7 @@ in {
       cursor = {
         package = pkgs.capitaine-cursors;
         name = "capitaine-cursors";
+        size = 10;
       };
     };
   };

@@ -49,6 +49,7 @@ in {
       cursor = {
         package = pkgs.capitaine-cursors;
         name = "capitaine-cursors";
+        size = 10;
       };
     };
   };
