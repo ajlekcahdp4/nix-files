@@ -14,6 +14,9 @@ in {
   config = lib.mkIf cfg.enable {
     programs.firefox = {
       enable = true;
+      # Switched to ESR due to https://bbs.archlinux.org/viewtopic.php?id=303079
+      # Remove when firefox gets fixed
+      package = pkgs.firefox-esr;
       profiles.alexander = {
         search.engines = {
           "Nix Packages" = {
