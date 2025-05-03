@@ -42,6 +42,10 @@
     nerd-fonts.noto
     nekoray
     xclip
+    hiddify-app
+    jq
+    yq
+    pandoc
   ];
   home.stateVersion = "23.11";
 }
