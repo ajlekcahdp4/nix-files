@@ -47,6 +47,7 @@
     jq
     yq
     pandoc
+    binsider
   ];
   home.stateVersion = "23.11";
 }
