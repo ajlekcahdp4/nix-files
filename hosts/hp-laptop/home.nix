@@ -37,6 +37,7 @@
     enable = true;
     profiles.default.isDefault = true;
   };
+  nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
     nerd-fonts.noto
