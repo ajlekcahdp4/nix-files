@@ -82,6 +82,7 @@
   virtualisation.docker.enable = true;
   users.users.alexander.extraGroups = ["docker"];
   environment.systemPackages = with pkgs; [
+    cachix
     distrobox
   ];
 
