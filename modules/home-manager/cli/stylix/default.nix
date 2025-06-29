@@ -39,6 +39,7 @@ in {
         nixvim.transparentBackground.signColumn = true;
         waybar.enable = true;
         hyprland.enable = true;
+        hyprpaper.enable = true;
         hyprland.hyprpaper.enable = true;
         hyprlock.enable = true;
         swaync.enable = true;

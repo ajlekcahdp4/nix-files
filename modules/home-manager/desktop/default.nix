@@ -10,6 +10,7 @@
     ./hyprland
     ./waybar.nix
     ./hyprlock.nix
+    ./hyprpaper.nix
     ./hypridle.nix
   ];
 }

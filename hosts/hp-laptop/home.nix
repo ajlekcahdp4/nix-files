@@ -28,6 +28,7 @@
     waybar.enable = true;
     hyprland.enable = true;
     hyprlock.enable = true;
+    hyprpaper.enable = true;
     hypridle.enable = true;
     swaync.enable = true;
     rofi.enable = true;
@@ -62,7 +63,6 @@
     binsider
     nautilus
     # Hyprland stuff
-    hyprpaper
     hyprpicker
     cliphist
     grimblast

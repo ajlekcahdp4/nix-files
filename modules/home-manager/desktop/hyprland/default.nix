@@ -22,6 +22,7 @@ in {
         exec-once = [
           "waybar"
           "hyprlock"
+          "hyprpaper"
         ];
         env = [
           "XDG_CURRENT_DESKTOP,Hyprland"
