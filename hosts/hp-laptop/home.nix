@@ -25,6 +25,12 @@
     atuin.enable = true;
     starship.enable = true;
     firefox.enable = lib.mkDefault false;
+    waybar.enable = true;
+    hyprland.enable = true;
+    hyprlock.enable = true;
+    hypridle.enable = true;
+    swaync.enable = true;
+    rofi.enable = true;
   };
 
   programs.home-manager.enable = true;
@@ -37,8 +43,14 @@
     enable = true;
     profiles.default.isDefault = true;
   };
+  programs.cava.enable = true;
   nixpkgs.config.allowUnfree = true;
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [xdg-desktop-portal-hyprland xdg-desktop-portal-gtk];
+    xdgOpenUsePortal = true;
+  };
   home.packages = with pkgs; [
     nerd-fonts.noto
     nekoray
@@ -48,6 +60,27 @@
     yq
     pandoc
     binsider
+    nautilus
+    # Hyprland stuff
+    hyprpaper
+    hyprpicker
+    cliphist
+    grimblast
+    swappy
+    libnotify
+    brightnessctl
+    networkmanagerapplet
+    pamixer
+    pavucontrol
+    playerctl
+    waybar
+    hyprshot
+    overskride
+    wtype
+    wl-clipboard
+    xdotool
+    yad
   ];
+  services.amberol.enable = true;
   home.stateVersion = "23.11";
 }

@@ -14,6 +14,14 @@ in {
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
+      settings = {
+        default_layout = "compact";
+        show_startup_tips = false;
+        pane_frames = false;
+        keybinds.normal = {
+          unbind = ["Ctrl q" "Ctrl b"];
+        };
+      };
     };
   };
 }

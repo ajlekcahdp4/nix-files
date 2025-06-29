@@ -17,6 +17,9 @@
     #(import ../modules/nixos/disko.nix {device = "/dev/nvme0n1";})
   ];
 
+  security.pam.services = {
+    hyprlock.enableGnomeKeyring = true;
+  };
   modules = {
     impermanence.enable = false;
     zerotier.enable = true;
@@ -25,6 +28,7 @@
       enable = true;
       flavour = "mocha";
     };
+    greetd.enable = true;
   };
   nixpkgs = {
     # You can add overlays here
@@ -51,6 +55,7 @@
     };
   };
   networking.hostName = "laptop";
+  fonts.packages = with pkgs.nerd-fonts; [jetbrains-mono fira-code];
 
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -68,8 +73,8 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = false;
+  services.xserver.desktopManager.gnome.enable = false;
   services.gnome.gcr-ssh-agent.enable = false;
   services.openssh = {
     enable = true;
@@ -82,8 +87,17 @@
   };
   virtualisation.docker.enable = true;
   users.users.alexander.extraGroups = ["docker"];
+
+  programs.hyprland = {
+    enable = true;
+  };
+  services.displayManager.defaultSession = "hyprland";
   environment.systemPackages = with pkgs; [
     cachix
+    kitty
+    wofi
+    rofi
+    waybar
     distrobox
   ];
 

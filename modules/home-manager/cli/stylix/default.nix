@@ -37,6 +37,12 @@ in {
         nixvim.enable = true;
         nixvim.transparentBackground.main = true;
         nixvim.transparentBackground.signColumn = true;
+        waybar.enable = true;
+        hyprland.enable = true;
+        hyprland.hyprpaper.enable = true;
+        hyprlock.enable = true;
+        swaync.enable = true;
+        rofi.enable = false;
         firefox = {
           enable = true;
           profileNames = ["alexander"];
@@ -46,7 +52,7 @@ in {
         btop.enable = true;
         wezterm.enable = true;
         alacritty.enable = true;
-        kitty.enable = true;
+        ghostty.enable = true;
         kde.enable = false;
         vscode = {
           profileNames = ["default"];
