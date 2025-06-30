@@ -88,6 +88,10 @@ in {
           "$mainMod CTRL ALT, left, movetoworkspace, r-1"
           "$mainMod CTRL ALT, l, movetoworkspace, r+1"
           "$mainMod CTRL ALT, h, movetoworkspace, r-1"
+          # volume control
+          ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+"
+          ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-"
+          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ];
         general = {
           gaps_in = 4;
