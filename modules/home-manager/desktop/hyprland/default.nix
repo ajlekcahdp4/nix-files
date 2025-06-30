@@ -92,6 +92,12 @@ in {
           ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-"
           ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          #brightness control
+          ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+          ",XF86MonBrightnessUp, exec, brightnessctl s +10%"
+          # Night Mode (lower value means warmer temp)
+          "$mainMod, F9, exec, hyprsunset --temperature 3500" # good values: 3500, 3000, 2500
+          "$mainMod, F10, exec, pkill hyprsunset"
         ];
         general = {
           gaps_in = 4;

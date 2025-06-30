@@ -64,6 +64,7 @@
     nautilus
     # Hyprland stuff
     hyprpicker
+    hyprsunset
     cliphist
     grimblast
     swappy
