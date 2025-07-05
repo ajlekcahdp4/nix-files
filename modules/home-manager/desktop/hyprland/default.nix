@@ -56,6 +56,7 @@ in {
           "$mainMod, return, exec, ghostty"
           "$mainMod, R, exec, rofi -show drun"
           "$mainMod, E, exec, nautilus"
+          "$mainMod, P, exec, nwg-displays"
 
           # Screenshots
           ", PRINT, exec, hyprshot -m region -o ~/Pictures/ScreenshotQs"
@@ -123,8 +124,7 @@ in {
       };
       extraConfig = ''
         monitor=,preferred,auto,1
-        monitor=eDP-1,1920x1080,0x0,1
-        monitor=HDMI-A-1,2560x1440,1920x0,1
+        source = ~/.config/hypr/monitors.conf
       '';
     };
     programs.wlogout.enable = true;

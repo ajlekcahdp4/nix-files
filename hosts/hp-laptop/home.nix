@@ -55,6 +55,7 @@
   home.packages = with pkgs; [
     nerd-fonts.noto
     nekoray
+    nwg-displays
     xclip
     hiddify-app
     jq
