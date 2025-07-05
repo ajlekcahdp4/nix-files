@@ -42,7 +42,7 @@ in {
 
           follow_mouse = 1;
 
-          touchpad.natural_scroll = false;
+          touchpad.natural_scroll = true;
 
           tablet.output = "current";
 
@@ -126,6 +126,10 @@ in {
             ignore_opacity = true;
             xray = false;
           };
+        };
+        gestures = {
+          workspace_swipe = true;
+          workspace_swipe_fingers = 2;
         };
       };
       extraConfig = ''
