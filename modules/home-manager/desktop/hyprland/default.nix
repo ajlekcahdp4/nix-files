@@ -52,6 +52,10 @@ in {
         misc = {
           mouse_move_focuses_monitor = true;
         };
+        binds = {
+          workspace_back_and_forth = true;
+          allow_workspace_cycles = true;
+        };
         bind = [
           "$mainMod, return, exec, ghostty"
           "$mainMod, R, exec, rofi -show drun"
@@ -99,6 +103,8 @@ in {
           # Night Mode (lower value means warmer temp)
           "$mainMod, F9, exec, hyprsunset --temperature 3500" # good values: 3500, 3000, 2500
           "$mainMod, F10, exec, pkill hyprsunset"
+          # ALT-TABbing workspaces
+          "ALT, Tab, workspace, previous"
         ];
         general = {
           gaps_in = 4;
