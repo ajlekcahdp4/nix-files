@@ -137,6 +137,10 @@ in {
               name = "VK";
               url = "https://vk.com/im";
             }
+            {
+              name = "telegram";
+              url = "https://web.telegram.org/a/";
+            }
           ];
         };
       };
