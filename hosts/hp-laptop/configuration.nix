@@ -24,6 +24,7 @@
     impermanence.enable = false;
     zerotier.enable = true;
     plymouth.enable = true;
+    chromium.enable = true;
     stylix = {
       enable = true;
       flavour = "mocha";

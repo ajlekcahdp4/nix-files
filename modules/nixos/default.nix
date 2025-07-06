@@ -4,6 +4,7 @@
     ./stylix
     ./zerotier
     ./greetd
+    ./chromium
     ./common.nix
     ./plymouth.nix
   ];
