@@ -79,6 +79,13 @@ in {
           "$mainMod, right, movefocus, r"
           "$mainMod, up, movefocus, u"
           "$mainMod, down, movefocus, d"
+          # to switch between windows in a floating workspace
+          "$mainMod, Tab, cyclenext"
+          # Move active window around current workspace with mainMod + SHIFT + CTRL [HLJK]
+          "$mainMod SHIFT CTRL, h, swapwindow, l"
+          "$mainMod SHIFT CTRL, l, swapwindow, r"
+          "$mainMod SHIFT CTRL, k, swapwindow, u"
+          "$mainMod SHIFT CTRL, j, swapwindow, d"
           # Switch workspaces relative to the active workspace with mainMod + CTRL + [←→]
           "$mainMod CTRL, right, workspace, r+1"
           "$mainMod CTRL, left, workspace, r-1"
