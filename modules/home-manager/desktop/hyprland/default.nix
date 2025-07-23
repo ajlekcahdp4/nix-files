@@ -23,6 +23,7 @@ in {
           "waybar"
           "hyprlock"
           "hyprpaper"
+          "poweralertd"
         ];
         env = [
           "XDG_CURRENT_DESKTOP,Hyprland"

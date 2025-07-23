@@ -64,6 +64,7 @@
     binsider
     nautilus
     # Hyprland stuff
+    poweralertd
     hyprpicker
     hyprsunset
     cliphist
