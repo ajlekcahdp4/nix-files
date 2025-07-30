@@ -23,6 +23,7 @@
 
   # Making legacy nix commands consistent as well, awesome!
   nix.nixPath = ["/etc/nix/path"];
+  nix.package = pkgs.nixVersions.nix_2_29;
   environment.variables.EDITOR = "vim";
   environment.etc =
     lib.mapAttrs'
