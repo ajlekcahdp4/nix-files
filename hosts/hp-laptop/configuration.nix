@@ -74,8 +74,8 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = false;
-  services.xserver.desktopManager.gnome.enable = false;
+  services.displayManager.gdm.enable = false;
+  services.desktopManager.gnome.enable = false;
   services.gnome.gcr-ssh-agent.enable = false;
   services.openssh = {
     enable = true;
@@ -100,6 +100,7 @@
     rofi
     waybar
     distrobox
+    hiddify-app
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

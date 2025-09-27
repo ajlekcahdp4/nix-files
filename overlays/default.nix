@@ -10,6 +10,8 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+
+    hiddify-app = prev.callPackage ../pkgs/hiddify-app {};
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will

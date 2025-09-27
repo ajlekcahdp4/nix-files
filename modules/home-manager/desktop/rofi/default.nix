@@ -134,7 +134,7 @@ in {
         sidebar-mode = true;
       };
       plugins = with pkgs; [
-        rofi-emoji-wayland # https://github.com/Mange/rofi-emoji 🤯
+        rofi-emoji # https://github.com/Mange/rofi-emoji 🤯
       ];
     };
   };

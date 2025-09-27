@@ -57,7 +57,6 @@
     nekoray
     nwg-displays
     xclip
-    hiddify-app
     jq
     yq
     pandoc
@@ -84,6 +83,11 @@
     xdotool
     yad
   ];
+  services.wlsunset = {
+    enable = true;
+    latitude = 55.625578;
+    longitude = 37.606392;
+  };
   services.amberol.enable = true;
   home.stateVersion = "23.11";
 }
