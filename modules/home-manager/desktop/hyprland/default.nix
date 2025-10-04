@@ -135,10 +135,6 @@ in {
             xray = false;
           };
         };
-        gestures = {
-          workspace_swipe = true;
-          workspace_swipe_fingers = 2;
-        };
       };
       extraConfig = ''
         monitor=,preferred,auto,1
