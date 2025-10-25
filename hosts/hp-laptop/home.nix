@@ -21,17 +21,10 @@
     zellij.enable = true;
     gnome.enable = lib.mkDefault false;
     wezterm.enable = false;
-    alacritty.enable = true;
+    alacritty.enable = false;
     atuin.enable = true;
     starship.enable = true;
     firefox.enable = lib.mkDefault false;
-    waybar.enable = true;
-    hyprland.enable = true;
-    hyprlock.enable = true;
-    hyprpaper.enable = true;
-    hypridle.enable = true;
-    swaync.enable = true;
-    rofi.enable = true;
   };
 
   programs.home-manager.enable = true;
@@ -44,14 +37,8 @@
     enable = true;
     profiles.default.isDefault = true;
   };
-  programs.cava.enable = true;
   nixpkgs.config.allowUnfree = true;
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [xdg-desktop-portal-hyprland xdg-desktop-portal-gtk];
-    xdgOpenUsePortal = true;
-  };
   home.packages = with pkgs; [
     nerd-fonts.noto
     nekoray
@@ -61,33 +48,6 @@
     yq
     pandoc
     binsider
-    nautilus
-    # Hyprland stuff
-    poweralertd
-    hyprpicker
-    hyprsunset
-    cliphist
-    grimblast
-    swappy
-    libnotify
-    brightnessctl
-    networkmanagerapplet
-    pamixer
-    pavucontrol
-    playerctl
-    waybar
-    hyprshot
-    overskride
-    wtype
-    wl-clipboard
-    xdotool
-    yad
   ];
-  services.wlsunset = {
-    enable = true;
-    latitude = 55.625578;
-    longitude = 37.606392;
-  };
-  services.amberol.enable = true;
   home.stateVersion = "23.11";
 }

@@ -17,9 +17,6 @@
     #(import ../modules/nixos/disko.nix {device = "/dev/nvme0n1";})
   ];
 
-  security.pam.services = {
-    hyprlock.enableGnomeKeyring = true;
-  };
   modules = {
     impermanence.enable = false;
     zerotier.enable = true;
@@ -29,7 +26,6 @@
       enable = true;
       flavour = "mocha";
     };
-    greetd.enable = true;
   };
   nixpkgs = {
     # You can add overlays here
@@ -74,8 +70,8 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = false;
-  services.desktopManager.gnome.enable = false;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
   services.gnome.gcr-ssh-agent.enable = false;
   services.openssh = {
     enable = true;
@@ -89,16 +85,8 @@
   virtualisation.docker.enable = true;
   users.users.alexander.extraGroups = ["docker"];
 
-  programs.hyprland = {
-    enable = true;
-  };
-  services.displayManager.defaultSession = "hyprland";
   environment.systemPackages = with pkgs; [
     cachix
-    kitty
-    wofi
-    rofi
-    waybar
     distrobox
     hiddify-app
   ];
