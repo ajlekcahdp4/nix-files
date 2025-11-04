@@ -94,7 +94,7 @@
   services.xserver = {
     xkb.layout = "us,ru";
     xkb.variant = ",";
-    xkb.options = "grp:alt_shift_toggle";
+    xkb.options = "grp:win_space_toggle";
   };
 
   services.openssh = {
