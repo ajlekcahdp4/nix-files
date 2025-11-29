@@ -121,6 +121,17 @@ in {
           "<leader>fb" = "buffers";
         };
       };
+      plugins.yazi.enable = true;
+      keymaps = [
+        {
+          mode = "n";
+          key = "<leader>lf";
+          action = ''<cmd>lua require("yazi").yazi()<cr>'';
+          options = {
+            desc = "[P]Opens the yazi file browser";
+          };
+        }
+      ];
       plugins.web-devicons.enable = true;
       plugins.airline = {
         enable = true;

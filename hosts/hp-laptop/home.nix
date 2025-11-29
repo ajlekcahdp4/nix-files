@@ -37,6 +37,11 @@
     enable = true;
     profiles.default.isDefault = true;
   };
+
+  programs.yazi = {
+    enable = true;
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
