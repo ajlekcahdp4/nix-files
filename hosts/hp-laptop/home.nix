@@ -53,6 +53,8 @@
     yq
     pandoc
     binsider
+    joplin
+    joplin-desktop
   ];
   home.stateVersion = "23.11";
 }
