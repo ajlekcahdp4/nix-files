@@ -9,7 +9,7 @@ in {
   options.modules.chromium.enable = lib.mkEnableOption "enable chromium";
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [pkgs.chromium];
+    environment.systemPackages = [pkgs.ungoogled-chromium];
     programs.chromium = {
       enable = true;
       extensions = [
