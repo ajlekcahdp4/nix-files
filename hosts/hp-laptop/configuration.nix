@@ -103,6 +103,7 @@
       intel-compute-runtime
     ];
   };
+  security.pki.certificates = [(builtins.readFile ./localCA.crt)];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
