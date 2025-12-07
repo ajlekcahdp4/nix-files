@@ -55,6 +55,7 @@
     binsider
     joplin
     joplin-desktop
+    bitwarden-desktop
   ];
   home.stateVersion = "23.11";
 }
